@@ -25,6 +25,11 @@ const links: LinkData[] = [
     text: "Employee",
     role: "employee",
   },
+  {
+    href: "/admin/manage-users",
+    text: "Manage users",
+    role: "admin",
+  },
 ];
 
 export default function Layout({ children }: PropsWithChildren) {
