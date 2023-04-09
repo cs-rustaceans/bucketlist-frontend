@@ -1,36 +1,52 @@
-import React, { PropsWithChildren } from "react";
+import Cookies from "js-cookie";
+import { PropsWithChildren } from "react";
 import { Title } from "react-head";
 import { Link } from "react-router-dom";
 
-const links = [
+interface LinkData {
+  href: string;
+  text: string;
+  role?: string;
+}
+
+const links: LinkData[] = [
   {
-    href: "#",
-    text: "Go here",
+    href: "/",
+    text: "Home",
+    role: undefined,
   },
   {
-    href: "#",
-    text: "Go there",
-  },
-  {
-    href: "#",
-    text: "Go nowhere",
+    href: "/admin",
+    text: "Admin",
+    role: "admin",
   },
 ];
 
 export default function Layout({ children }: PropsWithChildren) {
+  const role = Cookies.get("role");
   return (
     <>
       <Title>Mama are mere</Title>
       <div className="bg-slate-700 p-4">
         <div className="container mx-auto px-3 text-white flex">
           <span className="font-bold mr-3">Bucket List Manager</span>
-          {links.map(link => (
-            <Link to={link.href} className="px-3">
-              {link.text}
-            </Link>
-          ))}
+          {links
+            .filter(link => link.role === undefined || link.role === role)
+            .map(link => (
+              <Link to={link.href} className="px-3">
+                {link.text}
+              </Link>
+            ))}
           <span className="mr-auto"></span>
-          <span className="px-3">Logout</span>
+          {role === undefined ? (
+            <Link to={"/login"} className="px-3">
+              Login
+            </Link>
+          ) : (
+            <Link to={"/logout"} className="px-3">
+              Logout
+            </Link>
+          )}
         </div>
       </div>
       <div className="container mx-auto px-3 py-6">{children}</div>
