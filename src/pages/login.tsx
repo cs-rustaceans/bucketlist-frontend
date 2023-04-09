@@ -26,9 +26,11 @@ const handleLogin = async (
   const role = await response.text();
   Cookies.set("email", email);
   Cookies.set("password", password);
-  Cookies.set("role", role);
+  Cookies.set("role", role); // TODO: get rid of this
   if (role === "admin") {
     navigate("/admin");
+  } else if (role === "employee") {
+    navigate("/employee");
   }
 };
 
