@@ -2,6 +2,7 @@ import Cookies from "js-cookie";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { BACKEND_API_URL } from "../constants";
+import Button from "./Button";
 import TextInput from "./TextInput";
 
 export default function LoginForm() {
@@ -56,12 +57,7 @@ export default function LoginForm() {
           required
         />
         {error && <p className="text-red-500 mb-2">{error}</p>}
-        <button
-          className="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-500"
-          type="submit"
-        >
-          Login
-        </button>
+        <Button type="submit">Login</Button>
       </form>
     </div>
   );
