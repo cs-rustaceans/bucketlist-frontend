@@ -2,6 +2,7 @@ import Cookies from "js-cookie";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { BACKEND_API_URL } from "../constants";
+import TextInput from "./TextInput";
 
 export default function LoginForm() {
   const navigate = useNavigate();
@@ -35,8 +36,7 @@ export default function LoginForm() {
         <label className="block mb-2" htmlFor="email">
           Email
         </label>
-        <input
-          className="w-full border-gray-300 mb-4 py-2 px-3 rounded-lg focus:outline-none focus:ring focus:ring-blue-500 ring-2 ring-gray-300"
+        <TextInput
           type="email"
           id="email"
           name="email"
@@ -47,8 +47,7 @@ export default function LoginForm() {
         <label className="block mb-2" htmlFor="password">
           Password
         </label>
-        <input
-          className="w-full border-gray-300 mb-4 py-2 px-3 rounded-lg focus:outline-none focus:ring focus:ring-blue-500 ring-2 ring-gray-300"
+        <TextInput
           type="password"
           id="password"
           name="password"
