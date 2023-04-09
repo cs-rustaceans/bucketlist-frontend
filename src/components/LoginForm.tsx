@@ -1,12 +1,28 @@
+import Cookies from "js-cookie";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { BACKEND_API_URL } from "../constants";
 
 export default function LoginForm() {
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
 
   const handleLogin = async (event: React.FormEvent) => {
     event.preventDefault();
-    alert("logging in...");
+    const response = await fetch(`${BACKEND_API_URL}/login`, {
+      method: "POST",
+      body: JSON.stringify({ email, password }),
+      headers: { "Content-Type": "application/json" },
+    });
+    if (!response.ok) {
+      setError("Invalid email or password.");
+      return;
+    }
+    const role = await response.text();
+    Cookies.set("email", email);
+    Cookies.set("password", password);
   };
 
   return (
@@ -40,6 +56,7 @@ export default function LoginForm() {
           onChange={event => setPassword(event.target.value)}
           required
         />
+        {error && <p className="text-red-500 mb-2">{error}</p>}
         <button
           className="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-500"
           type="submit"
