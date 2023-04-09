@@ -1,6 +1,6 @@
 import Cookies from "js-cookie";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { NavigateFunction, useNavigate } from "react-router-dom";
 import Button from "../components/Button";
 import Layout from "../components/Layout";
 import TextInput from "../components/TextInput";
@@ -10,7 +10,8 @@ const handleLogin = async (
   event: React.FormEvent,
   email: string,
   password: string,
-  setError: React.Dispatch<React.SetStateAction<string>>
+  setError: React.Dispatch<React.SetStateAction<string>>,
+  navigate: NavigateFunction
 ) => {
   event.preventDefault();
   const response = await fetch(`${BACKEND_API_URL}/login`, {
@@ -25,6 +26,12 @@ const handleLogin = async (
   const role = await response.text();
   Cookies.set("email", email);
   Cookies.set("password", password);
+  Cookies.set("role", role); // TODO: get rid of this
+  if (role === "admin") {
+    navigate("/admin");
+  } else if (role === "employee") {
+    navigate("/employee");
+  }
 };
 
 const EmailInput = ({
@@ -85,7 +92,9 @@ const LoginForm = () => {
     <div className="flex justify-center items-center h-screen">
       <form
         className="max-w-md w-full p-6 rounded-lg shadow-lg"
-        onSubmit={event => handleLogin(event, email, password, setError)}
+        onSubmit={event =>
+          handleLogin(event, email, password, setError, navigate)
+        }
       >
         <h2 className="text-2xl font-semibold mb-6">Login</h2>
         <EmailInput email={email} setEmail={setEmail} />
