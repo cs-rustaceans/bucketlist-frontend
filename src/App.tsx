@@ -4,6 +4,8 @@ import HomePage from "./pages";
 import AdminPage from "./pages/admin";
 import EmployeePage from "./pages/employee";
 import LoginPage from "./pages/login";
+import { QueryClientProvider } from "react-query";
+import createQueryClient from "./lib/createQueryClient";
 
 const router = createBrowserRouter([
   {
@@ -27,7 +29,9 @@ const router = createBrowserRouter([
 function App() {
   return (
     <HeadProvider>
-      <RouterProvider router={router} />
+      <QueryClientProvider client={createQueryClient()}>
+        <RouterProvider router={router} />
+      </QueryClientProvider>
     </HeadProvider>
   );
 }
