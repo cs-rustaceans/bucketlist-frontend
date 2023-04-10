@@ -1,58 +1,11 @@
 import Cookies from "js-cookie";
 import { useState } from "react";
-import { NavigateFunction, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Button from "../components/Button";
+import EmailInput from "../components/EmailInput";
 import Layout from "../components/Layout";
-import TextInput from "../components/TextInput";
+import PasswordInput from "../components/PasswordInput";
 import useAxios from "../lib/hooks/useAxios";
-
-const EmailInput = ({
-  email,
-  onChange,
-}: {
-  email: string;
-  onChange: (email: string) => void;
-}) => {
-  return (
-    <>
-      <label className="block mb-2" htmlFor="email">
-        Email
-      </label>
-      <TextInput
-        type="email"
-        id="email"
-        name="email"
-        value={email}
-        onChange={event => onChange(event.target.value)}
-        required
-      />
-    </>
-  );
-};
-
-const PasswordInput = ({
-  password,
-  onChange,
-}: {
-  password: string;
-  onChange: (password: string) => void;
-}) => {
-  return (
-    <>
-      <label className="block mb-2" htmlFor="password">
-        Password
-      </label>
-      <TextInput
-        type="password"
-        id="password"
-        name="password"
-        value={password}
-        onChange={event => onChange(event.target.value)}
-        required
-      />
-    </>
-  );
-};
 
 const LoginForm = () => {
   const [email, setEmail] = useState("");

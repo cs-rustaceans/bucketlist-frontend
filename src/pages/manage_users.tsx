@@ -1,5 +1,7 @@
 import Cookies from "js-cookie";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import Button from "../components/Button";
 import Layout from "../components/Layout";
 import { BACKEND_API_URL } from "../constants";
 
@@ -50,6 +52,9 @@ const ManageUsers = () => {
     <Layout>
       {role === "admin" ? (
         <>
+          <Link to="/admin/manage-users/add">
+            <Button>Add user</Button>
+          </Link>
           <UsersTable />
         </>
       ) : (

@@ -3,6 +3,7 @@ import { QueryClientProvider } from "react-query";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import createQueryClient from "./lib/createQueryClient";
 import HomePage from "./pages";
+import UserAdd from "./pages/add_user";
 import AdminPage from "./pages/admin";
 import EmployeePage from "./pages/employee";
 import LoginPage from "./pages/login";
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
   {
     path: "/admin/manage-users",
     element: <ManageUsers />,
+  },
+  {
+    path: "/admin/manage-users/add",
+    element: <UserAdd />,
   },
 ]);
 
