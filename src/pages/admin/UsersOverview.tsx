@@ -46,7 +46,7 @@ const UsersTable = () => {
   );
 };
 
-const ManageUsers = () => {
+const UsersOverview = () => {
   const role = Cookies.get("role");
 
   if (role !== "admin") {
@@ -69,4 +69,4 @@ const ManageUsers = () => {
   );
 };
 
-export default ManageUsers;
+export default UsersOverview;

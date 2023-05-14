@@ -3,11 +3,11 @@ import { QueryClientProvider } from "react-query";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import createQueryClient from "./lib/createQueryClient";
 import HomePage from "./pages";
-import UserAdd from "./pages/admin/add_user";
-import AdminPage from "./pages/admin/admin";
-import ManageUsers from "./pages/admin/manage_users";
-import EmployeePage from "./pages/employee";
-import LoginPage from "./pages/login";
+import UserAdd from "./pages/admin/AddUser";
+import AdminPage from "./pages/admin/AdminPage";
+import UsersOverview from "./pages/admin/UsersOverview";
+import EmployeePage from "./pages/EmployeePage";
+import Login from "./pages/Login";
 
 const router = createBrowserRouter([
   {
@@ -16,7 +16,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/login",
-    element: <LoginPage />,
+    element: <Login />,
   },
   {
     path: "/admin",
@@ -27,11 +27,11 @@ const router = createBrowserRouter([
     element: <EmployeePage />,
   },
   {
-    path: "/admin/manage-users",
-    element: <ManageUsers />,
+    path: "/admin/users",
+    element: <UsersOverview />,
   },
   {
-    path: "/admin/manage-users/add",
+    path: "/admin/users/add",
     element: <UserAdd />,
   },
 ]);
