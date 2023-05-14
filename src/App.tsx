@@ -5,6 +5,7 @@ import createQueryClient from "./lib/createQueryClient";
 import HomePage from "./pages";
 import UserAdd from "./pages/admin/AddUser";
 import AdminPage from "./pages/admin/AdminPage";
+import EditUser from "./pages/admin/EditUser";
 import UsersOverview from "./pages/admin/UsersOverview";
 import EmployeePage from "./pages/EmployeePage";
 import Login from "./pages/Login";
@@ -33,6 +34,10 @@ const router = createBrowserRouter([
   {
     path: "/admin/users/add",
     element: <UserAdd />,
+  },
+  {
+    path: "/admin/users/:userId",
+    element: <EditUser />,
   },
 ]);
 

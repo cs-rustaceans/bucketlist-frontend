@@ -26,7 +26,7 @@ const links: LinkData[] = [
     role: "employee",
   },
   {
-    href: "/admin/manage-users",
+    href: "/admin/users",
     text: "Manage users",
     role: "admin",
   },
