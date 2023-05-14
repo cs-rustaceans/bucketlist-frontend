@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Button from "../components/Button";
-import EmailInput from "../components/EmailInput";
-import Layout from "../components/Layout";
-import PasswordInput from "../components/PasswordInput";
-import useAxios from "../lib/hooks/useAxios";
+import Button from "../../components/Button";
+import EmailInput from "../../components/EmailInput";
+import Layout from "../../components/Layout";
+import PasswordInput from "../../components/PasswordInput";
+import useAxios from "../../lib/hooks/useAxios";
 
 const UserAddForm = () => {
   const [email, setEmail] = useState("");

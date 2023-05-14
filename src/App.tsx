@@ -3,11 +3,11 @@ import { QueryClientProvider } from "react-query";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import createQueryClient from "./lib/createQueryClient";
 import HomePage from "./pages";
-import UserAdd from "./pages/add_user";
-import AdminPage from "./pages/admin";
+import UserAdd from "./pages/admin/add_user";
+import AdminPage from "./pages/admin/admin";
+import ManageUsers from "./pages/admin/manage_users";
 import EmployeePage from "./pages/employee";
 import LoginPage from "./pages/login";
-import ManageUsers from "./pages/manage_users";
 
 const router = createBrowserRouter([
   {

@@ -1,9 +1,9 @@
 import Cookies from "js-cookie";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import Button from "../components/Button";
-import Layout from "../components/Layout";
-import useAxios from "../lib/hooks/useAxios";
+import Button from "../../components/Button";
+import Layout from "../../components/Layout";
+import useAxios from "../../lib/hooks/useAxios";
 
 const UsersTable = () => {
   const [users, setUsers] = useState<User[]>([]);

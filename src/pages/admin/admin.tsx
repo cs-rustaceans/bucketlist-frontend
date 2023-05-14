@@ -1,5 +1,5 @@
 import Cookies from "js-cookie";
-import Layout from "../components/Layout";
+import Layout from "../../components/Layout";
 
 const AdminPage = () => {
   const email = Cookies.get("email");
