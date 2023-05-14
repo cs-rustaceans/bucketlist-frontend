@@ -35,7 +35,9 @@ const UsersTable = () => {
           <tbody>
             {users.map(user => (
               <tr key={user.id} className="border-t hover:bg-gray-100">
-                <td className="px-4 py-2">{user.email}</td>
+                <td className="px-4 py-2">
+                  <a href={`/admin/users/${user.id}`}>{user.email}</a>
+                </td>
                 <td className="px-4 py-2">{user.role}</td>
               </tr>
             ))}

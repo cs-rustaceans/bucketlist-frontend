@@ -32,7 +32,7 @@ const UserForm: FC<UserFormProps> = ({
   const buttonHandler = () => {
     onClick().catch((error: any) => {
       console.log(error);
-      setError(error);
+      setError(error.message);
     });
   };
 

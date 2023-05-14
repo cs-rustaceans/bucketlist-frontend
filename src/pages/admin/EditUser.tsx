@@ -32,6 +32,7 @@ const EditUser = () => {
       ...(password !== "" && { password }),
       role,
     });
+    navigate("/admin/users");
   };
 
   const handleDelete = async () => {
