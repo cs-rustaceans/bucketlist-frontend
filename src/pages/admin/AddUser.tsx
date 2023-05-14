@@ -18,7 +18,8 @@ const UserAddForm = () => {
       role,
     });
 
-    if (response.status != 201) {
+    if (response.status != 201 && response.status != 418) {
+      // remove 418 after backend is fixed
       throw Error("There was a problem and the user was not added.");
     }
     navigate("/admin/manage-users");

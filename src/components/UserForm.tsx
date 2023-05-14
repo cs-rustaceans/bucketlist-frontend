@@ -11,8 +11,9 @@ interface UserFormProps {
   setPassword: Dispatch<SetStateAction<string>>;
   role?: string;
   setRole?: Dispatch<SetStateAction<string>>;
-  onClick: () => void;
+  onClick: () => Promise<void>;
   buttonText: string;
+  children?: React.ReactNode;
 }
 
 const UserForm: FC<UserFormProps> = ({
@@ -25,15 +26,14 @@ const UserForm: FC<UserFormProps> = ({
   setRole,
   onClick,
   buttonText,
+  children,
 }) => {
   const [error, setError] = useState("");
   const buttonHandler = () => {
-    try {
-      onClick();
-    } catch (error: any) {
+    onClick().catch((error: any) => {
       console.log(error);
       setError(error);
-    }
+    });
   };
 
   return (
@@ -54,6 +54,7 @@ const UserForm: FC<UserFormProps> = ({
         )}
         {error && <p className="text-red-500 mb-2">{error}</p>}
         <Button onClick={buttonHandler}>{buttonText}</Button>
+        {children}
       </div>
     </div>
   );

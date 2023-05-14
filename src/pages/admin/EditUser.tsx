@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
+import Button from "../../components/Button";
 import Layout from "../../components/Layout";
 import UserForm from "../../components/UserForm";
 import useAxios from "../../lib/hooks/useAxios";
@@ -10,6 +11,7 @@ const EditUser = () => {
   const [password, setPassword] = useState("");
   const [role, setRole] = useState("employee");
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
   const axios = useAxios();
 
   const fetchUser = async () => {
@@ -32,6 +34,11 @@ const EditUser = () => {
     });
   };
 
+  const handleDelete = async () => {
+    await axios.delete(`/admin/users/${userId}`);
+    navigate("/admin/users");
+  };
+
   return (
     <Layout>
       {!loading && (
@@ -45,7 +52,9 @@ const EditUser = () => {
           setRole={setRole}
           onClick={saveChanges}
           buttonText="Save"
-        />
+        >
+          <Button onClick={handleDelete}>Delete</Button>
+        </UserForm>
       )}
       {loading && (
         <>

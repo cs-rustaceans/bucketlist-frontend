@@ -1,6 +1,6 @@
 import Cookies from "js-cookie";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router";
 import Layout from "../components/Layout";
 import UserForm from "../components/UserForm";
 import useAxios from "../lib/hooks/useAxios";
@@ -8,7 +8,6 @@ import useAxios from "../lib/hooks/useAxios";
 const LoginForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
   const navigate = useNavigate();
   const axios = useAxios();
 

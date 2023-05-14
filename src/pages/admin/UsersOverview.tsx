@@ -61,7 +61,7 @@ const UsersOverview = () => {
 
   return (
     <Layout>
-      <Link to="/admin/manage-users/add">
+      <Link to="/admin/users/add">
         <Button>Add user</Button>
       </Link>
       <UsersTable />

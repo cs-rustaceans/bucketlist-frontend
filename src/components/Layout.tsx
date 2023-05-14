@@ -43,7 +43,7 @@ export default function Layout({ children }: PropsWithChildren) {
           {links
             .filter(link => link.role === undefined || link.role === role)
             .map(link => (
-              <Link to={link.href} className="px-3">
+              <Link to={link.href} className="px-3" key={link.href}>
                 {link.text}
               </Link>
             ))}
