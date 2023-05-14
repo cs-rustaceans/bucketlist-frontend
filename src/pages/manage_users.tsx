@@ -3,27 +3,28 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Button from "../components/Button";
 import Layout from "../components/Layout";
-import { BACKEND_API_URL } from "../constants";
+import useAxios from "../lib/hooks/useAxios";
 
 const UsersTable = () => {
   const [users, setUsers] = useState<User[]>([]);
   const [loading, setLoading] = useState(true);
+  const axios = useAxios();
+
+  const fetchUsers = async () => {
+    setLoading(true);
+    const { data } = await axios.get("/admin/users");
+    setUsers(data);
+    setLoading(false);
+  };
 
   useEffect(() => {
-    const USERS_URL = `${BACKEND_API_URL}/admin/users`;
-    fetch(USERS_URL)
-      .then(response => response.json())
-      .then(fetchedUsers => {
-        setUsers(fetchedUsers);
-        setLoading(false);
-      });
+    fetchUsers();
   }, []);
 
   return (
     <div className="flex flex-col items-center">
-      {loading ? (
-        <h2 className="text-2xl font-semibold mb-6">Loading...</h2>
-      ) : (
+      {loading && <h2 className="text-2xl font-semibold mb-6">Loading...</h2>}
+      {!loading && (
         <table className="table-auto border-collapse w-full">
           <thead>
             <tr>
@@ -48,20 +49,22 @@ const UsersTable = () => {
 const ManageUsers = () => {
   const role = Cookies.get("role");
 
-  return (
-    <Layout>
-      {role === "admin" ? (
-        <>
-          <Link to="/admin/manage-users/add">
-            <Button>Add user</Button>
-          </Link>
-          <UsersTable />
-        </>
-      ) : (
+  if (role !== "admin") {
+    return (
+      <Layout>
         <h2 className="text-2xl font-semibold mb-6">
           You do not have access to this page. Please log in as an admin.
         </h2>
-      )}
+      </Layout>
+    );
+  }
+
+  return (
+    <Layout>
+      <Link to="/admin/manage-users/add">
+        <Button>Add user</Button>
+      </Link>
+      <UsersTable />
     </Layout>
   );
 };

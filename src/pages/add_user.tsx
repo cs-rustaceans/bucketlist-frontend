@@ -16,24 +16,14 @@ const UserAddForm = () => {
 
   const handleAdd = async () => {
     try {
-      const { data: response } = await axios.post(`/admin/users`, {
+      const response = await axios.post("/admin/users", {
         email,
         password,
         role,
       });
-    } catch (err: any) {
-      setError(err.toString());
-    }
-    try {
-      const response = await fetch(`${BACKEND_API_URL}/admin/users`, {
-        method: "POST",
-        body: JSON.stringify({ email, password, role }),
-        headers: { "Content-Type": "application/json" },
-      });
 
-      if (!response.ok) {
+      if (response.status != 201) {
         setError("User not added.");
-        return;
       }
       navigate("/admin/manage-users");
     } catch (error) {
@@ -41,13 +31,13 @@ const UserAddForm = () => {
       console.log(error);
     }
   };
+
   return (
     <div className="flex justify-center items-center h-screen">
       <div className="max-w-md w-full p-6 rounded-lg shadow-lg">
         <h2 className="text-2xl font-semibold mb-6">Login</h2>
         <EmailInput email={email} onChange={setEmail} />
         <PasswordInput password={password} onChange={setPassword} />
-        {error && <p className="text-red-500 mb-2">{error}</p>}
         <select
           className="w-full border-gray-300 mb-4 py-2 px-3 rounded-lg focus:outline-none focus:ring focus:ring-blue-500 ring-2 ring-gray-300"
           value={role}
@@ -56,6 +46,7 @@ const UserAddForm = () => {
           <option value="admin">Admin</option>
           <option value="employee">Employee</option>
         </select>
+        {error && <p className="text-red-500 mb-2">{error}</p>}
         <Button onClick={handleAdd}>Login</Button>
       </div>
     </div>
