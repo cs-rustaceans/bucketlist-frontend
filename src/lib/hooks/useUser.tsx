@@ -9,12 +9,12 @@ export const UserContext = createContext<{
   user?: User;
   isLoading: boolean;
   invalidate: () => void;
-  logout?: () => void;
+  logout: () => Promise<void>;
 }>({
   user: undefined,
   isLoading: true,
   invalidate: () => {},
-  logout: undefined,
+  logout: () => Promise.resolve(),
 });
 
 export const useUser = () => useContext(UserContext);
@@ -52,10 +52,5 @@ export function UserProvider({ children }: PropsWithChildren) {
       invalidate();
     },
   };
-  return (
-    <UserContext.Provider value={ctx}>
-      <p>token found</p>
-      {children}
-    </UserContext.Provider>
-  );
+  return <UserContext.Provider value={ctx}>{children}</UserContext.Provider>;
 }

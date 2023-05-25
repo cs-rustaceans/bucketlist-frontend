@@ -33,7 +33,7 @@ const links: LinkData[] = [
 ];
 
 export default function Layout({ children }: PropsWithChildren) {
-  const { isLoading, user } = useUser();
+  const { isLoading, user, logout } = useUser();
 
   return (
     <>
@@ -59,9 +59,9 @@ export default function Layout({ children }: PropsWithChildren) {
                   Login
                 </Link>
               ) : (
-                <Link to={"/logout"} className="px-3">
+                <button className="px-3" onClick={logout}>
                   Logout
-                </Link>
+                </button>
               )}
             </div>
           </div>
