@@ -2,6 +2,7 @@ import { HeadProvider } from "react-head";
 import { QueryClientProvider } from "react-query";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import createQueryClient from "./lib/createQueryClient";
+import { UserProvider } from "./lib/hooks/useUser";
 import HomePage from "./pages";
 import UserAdd from "./pages/admin/AddUser";
 import AdminPage from "./pages/admin/AdminPage";
@@ -45,7 +46,9 @@ function App() {
   return (
     <HeadProvider>
       <QueryClientProvider client={createQueryClient()}>
-        <RouterProvider router={router} />
+        <UserProvider>
+          <RouterProvider router={router} />
+        </UserProvider>
       </QueryClientProvider>
     </HeadProvider>
   );

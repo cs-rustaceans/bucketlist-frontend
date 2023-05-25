@@ -1,12 +1,10 @@
-import Cookies from "js-cookie";
 import Layout from "../components/Layout";
+import { useUser } from "../lib/hooks/useUser";
 
 const EmployeePage = () => {
-  const email = Cookies.get("email");
-  const password = Cookies.get("password");
-  const role = Cookies.get("role");
+  const { user } = useUser();
 
-  if (role !== "employee") {
+  if (user?.role !== "employee") {
     return (
       <Layout>
         <h2 className="text-2xl font-semibold mb-6">

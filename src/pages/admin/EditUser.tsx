@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { useQuery } from "react-query";
 import { useNavigate, useParams } from "react-router";
 import Button from "../../components/Button";
 import Layout from "../../components/Layout";
@@ -10,21 +11,19 @@ const EditUser = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [role, setRole] = useState("employee");
-  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
   const axios = useAxios();
 
-  const fetchUser = async () => {
-    setLoading(true);
-    const { data } = await axios.get(`/admin/users/${userId}`);
-    setEmail(data.email);
-    setRole(data.role);
-    setLoading(false);
-  };
-
-  useEffect(() => {
-    fetchUser();
-  }, []);
+  const { isLoading } = useQuery<User>(["admin", "users", userId], () =>
+    axios
+      .get(`/admin/users/${userId}`)
+      .then(d => d.data)
+      .then(d => {
+        setEmail(d.email);
+        setRole(d.role);
+        return d.data;
+      })
+  );
 
   const saveChanges = async () => {
     await axios.patch(`/admin/users/${userId}`, {
@@ -42,7 +41,7 @@ const EditUser = () => {
 
   return (
     <Layout>
-      {!loading && (
+      {!isLoading && (
         <UserForm
           title="Edit user"
           email={email}
@@ -57,7 +56,7 @@ const EditUser = () => {
           <Button onClick={handleDelete}>Delete</Button>
         </UserForm>
       )}
-      {loading && (
+      {isLoading && (
         <>
           <div className="flex justify-center items-center h-screen">
             <div className="max-w-md w-full p-6 rounded-lg shadow-lg">

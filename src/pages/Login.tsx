@@ -4,27 +4,26 @@ import { useNavigate } from "react-router";
 import Layout from "../components/Layout";
 import UserForm from "../components/UserForm";
 import useAxios from "../lib/hooks/useAxios";
+import { useUser } from "../lib/hooks/useUser";
 
 const LoginForm = () => {
+  const { isLoading, invalidate } = useUser();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
   const axios = useAxios();
 
   const handleLogin = async () => {
-    const { data: role } = await axios.post(`/login`, {
+    const { data: token } = await axios.post(`/login`, {
       email,
       password,
     });
-    Cookies.set("email", email);
-    Cookies.set("password", password);
-    Cookies.set("role", role); // TODO: get rid of this
-    if (role === "admin") {
-      navigate("/admin");
-    } else if (role === "employee") {
-      navigate("/employee");
-    }
+    Cookies.set("token", token.token);
+    invalidate();
+    navigate("/");
   };
+
+  if (isLoading) return <></>;
 
   return (
     <UserForm

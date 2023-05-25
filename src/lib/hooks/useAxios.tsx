@@ -1,6 +1,6 @@
 import axios from "axios";
-import { Config } from "../config";
 import Cookies from "js-cookie";
+import { Config } from "../config";
 
 export default function useAxios() {
   const token = Cookies.get("token");

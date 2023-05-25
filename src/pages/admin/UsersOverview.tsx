@@ -1,30 +1,21 @@
-import Cookies from "js-cookie";
-import { useEffect, useState } from "react";
+import { useQuery } from "react-query";
 import { Link } from "react-router-dom";
 import Button from "../../components/Button";
 import Layout from "../../components/Layout";
 import useAxios from "../../lib/hooks/useAxios";
+import { useUser } from "../../lib/hooks/useUser";
 
 const UsersTable = () => {
-  const [users, setUsers] = useState<User[]>([]);
-  const [loading, setLoading] = useState(true);
   const axios = useAxios();
 
-  const fetchUsers = async () => {
-    setLoading(true);
-    const { data } = await axios.get("/admin/users");
-    setUsers(data);
-    setLoading(false);
-  };
-
-  useEffect(() => {
-    fetchUsers();
-  }, []);
+  const { data: users, isLoading } = useQuery<User[]>(["admin", "users"], () =>
+    axios.get("/admin/users").then(d => d.data)
+  );
 
   return (
     <div className="flex flex-col items-center">
-      {loading && <h2 className="text-2xl font-semibold mb-6">Loading...</h2>}
-      {!loading && (
+      {isLoading && <h2 className="text-2xl font-semibold mb-6">Loading...</h2>}
+      {!isLoading && (
         <table className="table-auto border-collapse w-full">
           <thead>
             <tr>
@@ -33,7 +24,7 @@ const UsersTable = () => {
             </tr>
           </thead>
           <tbody>
-            {users.map(user => (
+            {users?.map(user => (
               <tr key={user.id} className="border-t hover:bg-gray-100">
                 <td className="px-4 py-2">
                   <a href={`/admin/users/${user.id}`}>{user.email}</a>
@@ -49,9 +40,9 @@ const UsersTable = () => {
 };
 
 const UsersOverview = () => {
-  const role = Cookies.get("role");
+  const { user } = useUser();
 
-  if (role !== "admin") {
+  if (user?.role !== "admin") {
     return (
       <Layout>
         <h2 className="text-2xl font-semibold mb-6">

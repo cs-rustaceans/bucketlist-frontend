@@ -21,7 +21,7 @@ const UserAddForm = () => {
     if (response.status != 201) {
       throw Error("There was a problem and the user was not added.");
     }
-    navigate("/admin/manage-users");
+    navigate("/admin/users");
   };
 
   return (
