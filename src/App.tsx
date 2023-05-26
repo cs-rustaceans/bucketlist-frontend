@@ -10,6 +10,7 @@ import EditUser from "./pages/admin/EditUser";
 import UsersOverview from "./pages/admin/UsersOverview";
 import EmployeePage from "./pages/EmployeePage";
 import Login from "./pages/Login";
+import { PageNotFound } from "./pages/PageNotFound";
 
 const router = createBrowserRouter([
   {
@@ -39,6 +40,10 @@ const router = createBrowserRouter([
   {
     path: "/admin/users/:userId",
     element: <EditUser />,
+  },
+  {
+    path: "/page-not-found",
+    element: <PageNotFound />,
   },
 ]);
 

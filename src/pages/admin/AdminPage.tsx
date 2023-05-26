@@ -1,18 +1,17 @@
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import Layout from "../../components/Layout";
 import { useUser } from "../../lib/hooks/useUser";
 
 const AdminPage = () => {
-  const { user } = useUser();
+  const { isLoading, user } = useUser();
+  const navigate = useNavigate();
 
-  if (user?.role !== "admin") {
-    return (
-      <Layout>
-        <h2 className="text-2xl font-semibold mb-6">
-          You do not have access to this page. Please log in as an admin.
-        </h2>
-      </Layout>
-    );
-  }
+  useEffect(() => {
+    if (!isLoading && user?.role !== "admin") {
+      navigate("/page-not-found");
+    }
+  }, [isLoading, user]);
 
   return (
     <Layout>
