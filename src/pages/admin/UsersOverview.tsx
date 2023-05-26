@@ -1,10 +1,9 @@
-import { useEffect } from "react";
 import { useQuery } from "react-query";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Button from "../../components/Button";
 import Layout from "../../components/Layout";
 import useAxios from "../../lib/hooks/useAxios";
-import { useUser } from "../../lib/hooks/useUser";
+import { useAdmin } from "../../lib/hooks/useRole";
 
 const UsersTable = () => {
   const axios = useAxios();
@@ -43,15 +42,7 @@ const UsersTable = () => {
 };
 
 const UsersOverview = () => {
-  const { isLoading, user } = useUser();
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    if (!isLoading && user?.role !== "admin") {
-      navigate("/page-not-found");
-    }
-  }, [isLoading, user]);
-
+  useAdmin();
   return (
     <Layout>
       <Link to="/admin/users/add">

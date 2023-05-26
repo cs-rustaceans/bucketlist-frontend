@@ -1,17 +1,8 @@
-import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import Layout from "../../components/Layout";
-import { useUser } from "../../lib/hooks/useUser";
+import { useAdmin } from "../../lib/hooks/useRole";
 
 const AdminPage = () => {
-  const { isLoading, user } = useUser();
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    if (!isLoading && user?.role !== "admin") {
-      navigate("/page-not-found");
-    }
-  }, [isLoading, user]);
+  useAdmin();
 
   return (
     <Layout>

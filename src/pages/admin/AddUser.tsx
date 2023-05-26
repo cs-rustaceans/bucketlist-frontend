@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Layout from "../../components/Layout";
 import UserForm from "../../components/UserForm";
 import useAxios from "../../lib/hooks/useAxios";
-import { useUser } from "../../lib/hooks/useUser";
+import { useAdmin } from "../../lib/hooks/useRole";
 
 const UserAddForm = () => {
   const [email, setEmail] = useState("");
@@ -41,15 +41,7 @@ const UserAddForm = () => {
 };
 
 const UserAdd = () => {
-  const { isLoading, user } = useUser();
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    if (!isLoading && user?.role !== "admin") {
-      navigate("/page-not-found");
-    }
-  }, [isLoading, user]);
-
+  useAdmin();
   return (
     <Layout>
       <UserAddForm />

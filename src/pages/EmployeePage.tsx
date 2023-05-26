@@ -1,17 +1,8 @@
-import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import Layout from "../components/Layout";
-import { useUser } from "../lib/hooks/useUser";
+import { useEmployee } from "../lib/hooks/useRole";
 
 const EmployeePage = () => {
-  const { isLoading, user } = useUser();
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    if (!isLoading && user?.role !== "employee") {
-      navigate("/page-not-found");
-    }
-  }, [isLoading, user]);
+  useEmployee();
 
   return (
     <Layout>

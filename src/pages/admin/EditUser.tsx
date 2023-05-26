@@ -1,14 +1,14 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useQuery } from "react-query";
 import { useNavigate, useParams } from "react-router";
 import Button from "../../components/Button";
 import Layout from "../../components/Layout";
 import UserForm from "../../components/UserForm";
 import useAxios from "../../lib/hooks/useAxios";
-import { useUser } from "../../lib/hooks/useUser";
+import { useAdmin } from "../../lib/hooks/useRole";
 
 const EditUser = () => {
-  const { isLoading: isUserLoading, user } = useUser();
+  useAdmin();
   const { userId } = useParams();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -16,12 +16,6 @@ const EditUser = () => {
   const [status, setStatus] = useState("");
   const navigate = useNavigate();
   const axios = useAxios();
-
-  useEffect(() => {
-    if (!isUserLoading && user?.role !== "admin") {
-      navigate("/page-not-found");
-    }
-  }, [isUserLoading, user]);
 
   const { isLoading } = useQuery<User>(["admin", "users", userId], () =>
     axios
