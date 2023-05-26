@@ -22,6 +22,7 @@ const UsersTable = () => {
             <tr>
               <th className="px-4 py-2 text-left">Email</th>
               <th className="px-4 py-2 text-left">Role</th>
+              <th className="px-4 py-2 text-left">Status</th>
             </tr>
           </thead>
           <tbody>
@@ -31,6 +32,7 @@ const UsersTable = () => {
                   <Link to={`/admin/users/${user.id}`}>{user.email}</Link>
                 </td>
                 <td className="px-4 py-2">{user.role}</td>
+                <td className="px-4 py-2">{user.status}</td>
               </tr>
             ))}
           </tbody>
