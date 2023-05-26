@@ -3,4 +3,5 @@ interface User {
   role: string;
   email: string;
   password?: string;
+  status?: string;
 }

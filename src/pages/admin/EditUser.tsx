@@ -13,6 +13,7 @@ const EditUser = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [role, setRole] = useState("employee");
+  const [status, setStatus] = useState("");
   const navigate = useNavigate();
   const axios = useAxios();
 
@@ -29,6 +30,7 @@ const EditUser = () => {
       .then(d => {
         setEmail(d.email);
         setRole(d.role);
+        setStatus(d.status);
         return d.data;
       })
   );
@@ -38,6 +40,7 @@ const EditUser = () => {
       email,
       ...(password !== "" && { password }),
       role,
+      status,
     });
     navigate("/admin/users");
   };
@@ -58,6 +61,8 @@ const EditUser = () => {
           setPassword={setPassword}
           role={role}
           setRole={setRole}
+          status={status}
+          setStatus={setStatus}
           onClick={saveChanges}
           buttonText="Save"
         >
