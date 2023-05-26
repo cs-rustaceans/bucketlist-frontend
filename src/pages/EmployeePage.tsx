@@ -8,7 +8,7 @@ const EmployeePage = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!isLoading && user?.role !== "admin") {
+    if (!isLoading && user?.role !== "employee") {
       navigate("/page-not-found");
     }
   }, [isLoading, user]);
