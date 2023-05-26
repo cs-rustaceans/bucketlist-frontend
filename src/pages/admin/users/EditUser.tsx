@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { useQuery } from "react-query";
 import { useNavigate, useParams } from "react-router";
-import Button from "../../components/Button";
-import Layout from "../../components/Layout";
-import UserForm from "../../components/UserForm";
-import useAxios from "../../lib/hooks/useAxios";
-import { useAdmin } from "../../lib/hooks/useRole";
+import Button from "../../../components/Button";
+import Layout from "../../../components/Layout";
+import UserForm from "../../../components/UserForm";
+import useAxios from "../../../lib/hooks/useAxios";
+import { useAdmin } from "../../../lib/hooks/useRole";
 
 const EditUser = () => {
   useAdmin();

@@ -1,9 +1,9 @@
 import { useQuery } from "react-query";
 import { Link } from "react-router-dom";
-import Button from "../../components/Button";
-import Layout from "../../components/Layout";
-import useAxios from "../../lib/hooks/useAxios";
-import { useAdmin } from "../../lib/hooks/useRole";
+import Button from "../../../components/Button";
+import Layout from "../../../components/Layout";
+import useAxios from "../../../lib/hooks/useAxios";
+import { useAdmin } from "../../../lib/hooks/useRole";
 
 const UsersTable = () => {
   const axios = useAxios();
