@@ -38,7 +38,7 @@ const DestinationForm: FC<DestinationFormProps> = ({
   });
 
   return (
-    <form className="space-y-4" onSubmit={formik.handleSubmit}>
+    <form onSubmit={formik.handleSubmit}>
       <label className="block font-medium">
         Name
         <TextInput id="name" type="text" {...formik.getFieldProps("name")} />

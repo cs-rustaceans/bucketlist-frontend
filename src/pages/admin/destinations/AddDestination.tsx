@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import Card from "../../../components/Card";
 import DestinationForm from "../../../components/DestinationForm";
 import Layout from "../../../components/Layout";
 import useAxios from "../../../lib/hooks/useAxios";
@@ -23,7 +24,16 @@ const AddDestination = () => {
     }
   };
   return (
-    <Layout>{!isLoading && <DestinationForm onSubmit={onSubmit} />}</Layout>
+    <Layout>
+      <Card>
+        {!isLoading && (
+          <div>
+            <h2 className="text-2xl font-semibold mb-6">Add destination</h2>
+            <DestinationForm onSubmit={onSubmit} />
+          </div>
+        )}
+      </Card>
+    </Layout>
   );
 };
 

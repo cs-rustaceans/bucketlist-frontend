@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Card from "../../../components/Card";
 import Layout from "../../../components/Layout";
 import UserForm from "../../../components/UserForm";
 import useAxios from "../../../lib/hooks/useAxios";
@@ -26,17 +27,19 @@ const UserAddForm = () => {
   };
 
   return (
-    <UserForm
-      title="Add user"
-      email={email}
-      setEmail={setEmail}
-      password={password}
-      setPassword={setPassword}
-      role={role}
-      setRole={setRole}
-      onClick={handleAdd}
-      buttonText="Add"
-    />
+    <Card>
+      <UserForm
+        title="Add user"
+        email={email}
+        setEmail={setEmail}
+        password={password}
+        setPassword={setPassword}
+        role={role}
+        setRole={setRole}
+        onClick={handleAdd}
+        buttonText="Add"
+      />
+    </Card>
   );
 };
 
