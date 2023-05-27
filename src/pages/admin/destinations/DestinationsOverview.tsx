@@ -54,7 +54,7 @@ const DestinationsTable = () => {
                   </td>
                   <td className="px-4 py-2">{destination.latitude}</td>
                   <td className="px-4 py-2">{destination.longitude}</td>
-                  <td className="px-4 py-2">{destination.is_reviewed}</td>
+                  <td className="px-4 py-2">{`${destination.is_reviewed}`}</td>
                 </tr>
               ))}
             </tbody>
