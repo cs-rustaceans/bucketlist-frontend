@@ -7,7 +7,7 @@ import OverviewTable from "../../../components/OverviewTable";
 import useAxios from "../../../lib/hooks/useAxios";
 import { useAdmin } from "../../../lib/hooks/useRole";
 
-export const destinationColumns = [
+const columns = [
   {
     name: "Name",
     getValue: (destination: Destination) => (
@@ -57,7 +57,7 @@ const DestinationsTable = () => {
       <OverviewTable
         isLoading={isLoading}
         data={destinations}
-        columns={destinationColumns}
+        columns={columns}
       />
     </>
   );
