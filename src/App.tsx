@@ -7,6 +7,7 @@ import HomePage from "./pages";
 import AdminPage from "./pages/admin/AdminPage";
 import AddDestination from "./pages/admin/destinations/AddDestination";
 import DestinationsOverview from "./pages/admin/destinations/DestinationsOverview";
+import EditDestination from "./pages/admin/destinations/EditDestination";
 import UserAdd from "./pages/admin/users/AddUser";
 import EditUser from "./pages/admin/users/EditUser";
 import UsersOverview from "./pages/admin/users/UsersOverview";
@@ -50,6 +51,10 @@ const router = createBrowserRouter([
   {
     path: "/admin/destinations/add",
     element: <AddDestination />,
+  },
+  {
+    path: "/admin/destinations/:destinationId",
+    element: <EditDestination />,
   },
   {
     path: "/page-not-found",

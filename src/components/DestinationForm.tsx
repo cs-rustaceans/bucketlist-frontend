@@ -70,6 +70,7 @@ const DestinationForm: FC<DestinationFormProps> = ({
         <input
           id="reviewed"
           type="checkbox"
+          checked={formik.values.is_reviewed}
           {...formik.getFieldProps("is_reviewed")}
         />
       </label>
