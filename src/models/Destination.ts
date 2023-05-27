@@ -1,5 +1,5 @@
 interface Destination {
-  id: number;
+  id?: number;
   owner_id: number;
   visibility: "public" | "private";
   is_reviewed: boolean;

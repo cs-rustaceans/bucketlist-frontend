@@ -1,6 +1,7 @@
 import { Dispatch, FC, SetStateAction, useState } from "react";
 import Button from "./Button";
 import EmailInput from "./EmailInput";
+import Error from "./Error";
 import PasswordInput from "./PasswordInput";
 import Select from "./Select";
 
@@ -65,7 +66,7 @@ const UserForm: FC<UserFormProps> = ({
             </option>
           </Select>
         )}
-        {error && <p className="text-red-500 mb-2">{error}</p>}
+        <Error error={error} />
         <Button onClick={buttonHandler}>{buttonText}</Button>
         {children}
       </div>

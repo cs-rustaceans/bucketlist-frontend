@@ -5,6 +5,7 @@ import createQueryClient from "./lib/createQueryClient";
 import { UserProvider } from "./lib/hooks/useUser";
 import HomePage from "./pages";
 import AdminPage from "./pages/admin/AdminPage";
+import AddDestination from "./pages/admin/destinations/AddDestination";
 import DestinationsOverview from "./pages/admin/destinations/DestinationsOverview";
 import UserAdd from "./pages/admin/users/AddUser";
 import EditUser from "./pages/admin/users/EditUser";
@@ -45,6 +46,10 @@ const router = createBrowserRouter([
   {
     path: "/admin/destinations",
     element: <DestinationsOverview />,
+  },
+  {
+    path: "/admin/destinations/add",
+    element: <AddDestination />,
   },
   {
     path: "/page-not-found",
