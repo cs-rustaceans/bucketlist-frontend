@@ -31,8 +31,9 @@ const DestinationForm: FC<DestinationFormProps> = ({
   initialValues,
   onSubmit,
 }) => {
+  const usedInitialValues = initialValues ?? defaultValues;
   const formik = useFormik({
-    initialValues: initialValues ?? defaultValues,
+    initialValues: usedInitialValues,
     onSubmit,
     validationSchema,
   });
@@ -66,22 +67,24 @@ const DestinationForm: FC<DestinationFormProps> = ({
       <Error error={formik.errors.longitude} />
 
       <label className="block font-medium">
-        Is reviewed
-        <input
-          id="reviewed"
-          type="checkbox"
-          checked={formik.values.is_reviewed}
-          {...formik.getFieldProps("is_reviewed")}
-        />
-      </label>
-
-      <label className="block font-medium">
         Visibility
         <Select id="visibility" {...formik.getFieldProps("visibility")}>
           <option value="public">Public</option>
           <option value="private">Private</option>
         </Select>
       </label>
+
+      {!usedInitialValues.is_reviewed && (
+        <label className="block font-medium">
+          Reviewed destination
+          <input
+            id="reviewed"
+            type="checkbox"
+            checked={formik.values.is_reviewed}
+            {...formik.getFieldProps("is_reviewed")}
+          />
+        </label>
+      )}
 
       <Button type="submit">Submit</Button>
     </form>
