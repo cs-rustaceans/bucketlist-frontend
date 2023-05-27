@@ -11,7 +11,7 @@ import EditDestinationPage from "./pages/admin/destinations/EditDestinationPage"
 import UserAdd from "./pages/admin/users/AddUser";
 import EditUser from "./pages/admin/users/EditUser";
 import UsersOverview from "./pages/admin/users/UsersOverview";
-import EmployeePage from "./pages/EmployeePage";
+import EmployeePage from "./pages/employee/EmployeePage";
 import Login from "./pages/Login";
 import { PageNotFound } from "./pages/PageNotFound";
 
