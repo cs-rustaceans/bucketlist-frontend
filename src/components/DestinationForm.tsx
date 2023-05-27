@@ -61,10 +61,11 @@ const DestinationForm: FC<DestinationFormProps> = ({ onSubmit }) => {
 
       <label className="block font-medium">
         Is reviewed
-        <Select id="is_reviewed" {...formik.getFieldProps("is_reviewed")}>
-          <option value="false">False</option>
-          <option value="true">True</option>
-        </Select>
+        <input
+          id="reviewed"
+          type="checkbox"
+          {...formik.getFieldProps("is_reviewed")}
+        />
       </label>
 
       <label className="block font-medium">
