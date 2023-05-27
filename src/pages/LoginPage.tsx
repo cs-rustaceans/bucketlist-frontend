@@ -38,7 +38,7 @@ const LoginForm = () => {
   );
 };
 
-const Login = () => {
+const LoginPage = () => {
   return (
     <Layout>
       <LoginForm />
@@ -46,4 +46,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default LoginPage;

@@ -41,7 +41,7 @@ const UsersTable = () => {
   );
 };
 
-const UsersOverview = () => {
+const UsersOverviewPage = () => {
   useAdmin();
   return (
     <Layout>
@@ -53,4 +53,4 @@ const UsersOverview = () => {
   );
 };
 
-export default UsersOverview;
+export default UsersOverviewPage;

@@ -1,6 +1,6 @@
 import Layout from "../components/Layout";
 
-export const PageNotFound = () => {
+export const NotFoundPage = () => {
   return (
     <Layout>
       <h2 className="text-2xl font-semibold mb-6">

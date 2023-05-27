@@ -7,7 +7,7 @@ import UserForm from "../../../components/UserForm";
 import useAxios from "../../../lib/hooks/useAxios";
 import { useAdmin } from "../../../lib/hooks/useRole";
 
-const EditUser = () => {
+const EditUserPage = () => {
   useAdmin();
   const { userId } = useParams();
   const [email, setEmail] = useState("");
@@ -77,4 +77,4 @@ const EditUser = () => {
   );
 };
 
-export default EditUser;
+export default EditUserPage;
