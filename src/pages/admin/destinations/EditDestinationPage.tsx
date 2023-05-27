@@ -1,5 +1,6 @@
 import { useQuery, useQueryClient } from "react-query";
 import { useNavigate, useParams } from "react-router-dom";
+import Button from "../../../components/Button";
 import Card from "../../../components/Card";
 import DestinationForm from "../../../components/DestinationForm";
 import Layout from "../../../components/Layout";
@@ -12,23 +13,22 @@ const EditDestinationPage = () => {
   const queryClient = useQueryClient();
   const axios = useAxios();
   const navigate = useNavigate();
+  const URL = `/admin/destinations/${destinationId}`;
 
   const { data: destination, isLoading } = useQuery<Destination>(
     ["admin", "destinations", destinationId],
-    () =>
-      axios
-        .get(`/admin/destinations/${destinationId}`)
-        .then(result => result.data)
+    () => axios.get(URL).then(result => result.data)
   );
+
+  const invalidate = () => {
+    queryClient.invalidateQueries(["admin", "destinations", destinationId]);
+  };
 
   const onSubmit = async (values: any) => {
     try {
-      const response = await axios.patch(
-        `/admin/destinations/${destinationId}`,
-        values
-      );
+      const response = await axios.patch(URL, values);
       if (response.status === 200) {
-        queryClient.invalidateQueries(["admin", "destinations", destinationId]);
+        invalidate();
         navigate("/admin/destinations");
       }
     } catch (error) {
@@ -45,6 +45,15 @@ const EditDestinationPage = () => {
               Edit destination #{destinationId}
             </h2>
             <DestinationForm initialValues={destination} onSubmit={onSubmit} />
+            <Button
+              onClick={async () => {
+                await axios.delete(URL);
+                invalidate();
+                navigate("/admin/destinations");
+              }}
+            >
+              Delete
+            </Button>
           </div>
         )}
       </Card>
