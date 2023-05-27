@@ -7,6 +7,7 @@ import Select from "./Select";
 import TextInput from "./TextInput";
 
 interface DestinationFormProps {
+  initialValues?: Destination;
   onSubmit: (values: any) => Promise<void>;
 }
 
@@ -18,15 +19,20 @@ const validationSchema = Yup.object({
   is_reviewed: Yup.bool().required(),
 });
 
-const DestinationForm: FC<DestinationFormProps> = ({ onSubmit }) => {
+const defaultValues: Destination = {
+  visibility: "public",
+  is_reviewed: false,
+  name: "",
+  latitude: 0,
+  longitude: 0,
+};
+
+const DestinationForm: FC<DestinationFormProps> = ({
+  initialValues,
+  onSubmit,
+}) => {
   const formik = useFormik({
-    initialValues: {
-      visibility: "public",
-      is_reviewed: false,
-      name: "",
-      latitude: 0,
-      longitude: 0,
-    },
+    initialValues: initialValues ?? defaultValues,
     onSubmit,
     validationSchema,
   });
