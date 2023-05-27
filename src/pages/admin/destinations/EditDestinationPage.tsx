@@ -6,7 +6,7 @@ import Layout from "../../../components/Layout";
 import useAxios from "../../../lib/hooks/useAxios";
 import { useAdmin } from "../../../lib/hooks/useRole";
 
-const EditDestination = () => {
+const EditDestinationPage = () => {
   useAdmin();
   const { destinationId } = useParams();
   const queryClient = useQueryClient();
@@ -52,4 +52,4 @@ const EditDestination = () => {
   );
 };
 
-export default EditDestination;
+export default EditDestinationPage;

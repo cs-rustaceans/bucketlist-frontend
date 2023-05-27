@@ -65,7 +65,7 @@ const DestinationsTable = () => {
   );
 };
 
-const UsersOverview = () => {
+const DestinationsOverviewPage = () => {
   useAdmin();
   return (
     <Layout>
@@ -78,4 +78,4 @@ const UsersOverview = () => {
   );
 };
 
-export default UsersOverview;
+export default DestinationsOverviewPage;

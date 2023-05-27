@@ -5,7 +5,7 @@ import Layout from "../../../components/Layout";
 import useAxios from "../../../lib/hooks/useAxios";
 import { useAdmin } from "../../../lib/hooks/useRole";
 
-const AddDestination = () => {
+const AddDestinationPage = () => {
   const { isLoading, user } = useAdmin();
   const axios = useAxios();
   const navigate = useNavigate();
@@ -37,4 +37,4 @@ const AddDestination = () => {
   );
 };
 
-export default AddDestination;
+export default AddDestinationPage;
