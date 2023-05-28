@@ -1,11 +1,11 @@
 import Layout from "../../components/Layout";
-import { useEmployee } from "../../lib/hooks/useRole";
+import { useRequireEmployee } from "../../lib/hooks/useRole";
 
 const EmployeePage = () => {
-  useEmployee();
+  useRequireEmployee();
 
   return (
-    <Layout>
+    <Layout title="Employee">
       <h2 className="text-2xl font-semibold mb-6">
         Welcome! You are an employee.
       </h2>

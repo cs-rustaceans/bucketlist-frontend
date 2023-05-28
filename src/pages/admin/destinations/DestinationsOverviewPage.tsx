@@ -5,7 +5,7 @@ import Button from "../../../components/Button";
 import Layout from "../../../components/Layout";
 import OverviewTable from "../../../components/OverviewTable";
 import useAxios from "../../../lib/hooks/useAxios";
-import { useAdmin } from "../../../lib/hooks/useRole";
+import { useRequireAdmin } from "../../../lib/hooks/useRole";
 
 const columns = [
   {
@@ -64,9 +64,9 @@ const DestinationsTable = () => {
 };
 
 const DestinationsOverviewPage = () => {
-  useAdmin();
+  useRequireAdmin();
   return (
-    <Layout>
+    <Layout title="Destinations overview">
       <Link to="/admin/destinations/add">
         <Button>Add destination</Button>
       </Link>

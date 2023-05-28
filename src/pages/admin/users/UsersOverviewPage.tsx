@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import Button from "../../../components/Button";
 import Layout from "../../../components/Layout";
 import useAxios from "../../../lib/hooks/useAxios";
-import { useAdmin } from "../../../lib/hooks/useRole";
+import { useRequireAdmin } from "../../../lib/hooks/useRole";
 
 const UsersTable = () => {
   const axios = useAxios();
@@ -41,10 +41,10 @@ const UsersTable = () => {
   );
 };
 
-const UsersOverview = () => {
-  useAdmin();
+const UsersOverviewPage = () => {
+  useRequireAdmin();
   return (
-    <Layout>
+    <Layout title="Users overview">
       <Link to="/admin/users/add">
         <Button>Add user</Button>
       </Link>
@@ -53,4 +53,4 @@ const UsersOverview = () => {
   );
 };
 
-export default UsersOverview;
+export default UsersOverviewPage;

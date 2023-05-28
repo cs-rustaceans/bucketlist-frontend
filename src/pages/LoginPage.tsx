@@ -38,12 +38,12 @@ const LoginForm = () => {
   );
 };
 
-const Login = () => {
+const LoginPage = () => {
   return (
-    <Layout>
+    <Layout title="Login">
       <LoginForm />
     </Layout>
   );
 };
 
-export default Login;
+export default LoginPage;

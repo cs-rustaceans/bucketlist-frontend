@@ -4,7 +4,7 @@ import Card from "../../../components/Card";
 import Layout from "../../../components/Layout";
 import UserForm from "../../../components/UserForm";
 import useAxios from "../../../lib/hooks/useAxios";
-import { useAdmin } from "../../../lib/hooks/useRole";
+import { useRequireAdmin } from "../../../lib/hooks/useRole";
 
 const UserAddForm = () => {
   const [email, setEmail] = useState("");
@@ -21,7 +21,7 @@ const UserAddForm = () => {
     });
 
     if (response.status != 201) {
-      throw Error("There was a problem and the user was not added.");
+      throw new Error("There was a problem and the user was not added.");
     }
     navigate("/admin/users");
   };
@@ -43,13 +43,13 @@ const UserAddForm = () => {
   );
 };
 
-const UserAdd = () => {
-  useAdmin();
+const AddUserPage = () => {
+  useRequireAdmin();
   return (
-    <Layout>
+    <Layout title="Add user">
       <UserAddForm />
     </Layout>
   );
 };
 
-export default UserAdd;
+export default AddUserPage;

@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useUser } from "./useUser";
 
-const useRole = (role: "admin" | "employee") => () => {
+const useRequireRole = (role: "admin" | "employee") => () => {
   const user = useUser();
   const navigate = useNavigate();
 
@@ -15,5 +15,5 @@ const useRole = (role: "admin" | "employee") => () => {
   return user;
 };
 
-export const useAdmin = useRole("admin");
-export const useEmployee = useRole("employee");
+export const useRequireAdmin = useRequireRole("admin");
+export const useRequireEmployee = useRequireRole("employee");

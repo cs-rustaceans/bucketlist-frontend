@@ -5,10 +5,10 @@ import Button from "../../../components/Button";
 import Layout from "../../../components/Layout";
 import UserForm from "../../../components/UserForm";
 import useAxios from "../../../lib/hooks/useAxios";
-import { useAdmin } from "../../../lib/hooks/useRole";
+import { useRequireAdmin } from "../../../lib/hooks/useRole";
 
-const EditUser = () => {
-  useAdmin();
+const EditUserPage = () => {
+  useRequireAdmin();
   const { userId } = useParams();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -45,7 +45,7 @@ const EditUser = () => {
   };
 
   return (
-    <Layout>
+    <Layout title="Edit user">
       {!isLoading && (
         <UserForm
           title="Edit user"
@@ -77,4 +77,4 @@ const EditUser = () => {
   );
 };
 
-export default EditUser;
+export default EditUserPage;

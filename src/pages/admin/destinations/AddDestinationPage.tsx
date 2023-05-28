@@ -3,10 +3,10 @@ import Card from "../../../components/Card";
 import DestinationForm from "../../../components/DestinationForm";
 import Layout from "../../../components/Layout";
 import useAxios from "../../../lib/hooks/useAxios";
-import { useAdmin } from "../../../lib/hooks/useRole";
+import { useRequireAdmin } from "../../../lib/hooks/useRole";
 
 const AddDestinationPage = () => {
-  const { isLoading, user } = useAdmin();
+  const { isLoading, user } = useRequireAdmin();
   const axios = useAxios();
   const navigate = useNavigate();
   const onSubmit = async (values: any) => {
@@ -24,7 +24,7 @@ const AddDestinationPage = () => {
     }
   };
   return (
-    <Layout>
+    <Layout title="Add destination">
       <Card>
         {!isLoading && (
           <div>
