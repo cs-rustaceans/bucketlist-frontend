@@ -8,13 +8,19 @@ import { useRequireEmployee } from "../../../lib/hooks/useRole";
 const BucketListTable = () => {
   const axios = useAxios();
 
-  const { data: bucketListItems, isLoading } = useQuery<Destination[]>(
-    ["employee", "bucketlist-items"],
-    () => axios.get(`/employee/bucketlist-items`).then(d => d.data)
+  const {
+    data: bucketListItems,
+    isLoading,
+    refetch,
+  } = useQuery<Destination[]>(["employee", "bucketlist-items"], () =>
+    axios.get(`/employee/bucketlist-items`).then(d => d.data)
   );
 
   const changeFavourite = async (bucketListItemId: number) => {
-    console.log("Setting favourite to", bucketListItemId);
+    await axios.patch(
+      `/employee/bucketlist-items/${bucketListItemId}/make-favorite`
+    );
+    refetch();
   };
 
   const columns = [
@@ -45,6 +51,7 @@ const BucketListTable = () => {
           disabled={!bucketListItem.destination.is_reviewed}
           type="radio"
           name="favourite-radio-group"
+          checked={bucketListItem.is_favorite}
           onChange={e => {
             changeFavourite(bucketListItem.id);
           }}
