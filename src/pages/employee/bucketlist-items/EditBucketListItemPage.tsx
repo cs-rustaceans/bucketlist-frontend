@@ -1,0 +1,56 @@
+import { useQuery, useQueryClient } from "react-query";
+import { useNavigate, useParams } from "react-router-dom";
+import BucketListItemForm, {
+  TripDates,
+} from "../../../components/BucketListItemForm";
+import Card from "../../../components/Card";
+import Layout from "../../../components/Layout";
+import useAxios from "../../../lib/hooks/useAxios";
+import { useRequireEmployee } from "../../../lib/hooks/useRole";
+
+const EditBucketListItemPage = () => {
+  useRequireEmployee();
+  const { bucketListItemId } = useParams();
+  const axios = useAxios();
+  const navigate = useNavigate();
+  const queryClient = useQueryClient();
+
+  const URL = `/employee/bucketlist-items/${bucketListItemId}`;
+  const queryKey = ["employee", "bucketlist-items", bucketListItemId];
+  const { data: bucketListItem, isLoading } = useQuery<BucketListItem>(
+    queryKey,
+    () => axios.get(URL).then(result => result.data)
+  );
+
+  const onSubmit = async (values: TripDates) => {
+    const start_date = new Date(values.start_date).toISOString().split(".")[0];
+    const end_date = new Date(values.end_date).toISOString().split(".")[0];
+
+    await axios.patch(URL, {
+      start_date,
+      end_date,
+    });
+    queryClient.invalidateQueries(queryKey);
+    navigate("/bucketlist-items");
+  };
+
+  return (
+    <Layout title="Add bucket list destination">
+      <Card>
+        <h2 className="text-2xl font-semibold mb-6">Edit bucket list item</h2>
+        {!isLoading && bucketListItem && (
+          <BucketListItemForm
+            onSubmit={onSubmit}
+            destinationId={bucketListItem.destination_id}
+            initialValues={{
+              start_date: bucketListItem.start_date,
+              end_date: bucketListItem.end_date,
+            }}
+          />
+        )}
+      </Card>
+    </Layout>
+  );
+};
+
+export default EditBucketListItemPage;

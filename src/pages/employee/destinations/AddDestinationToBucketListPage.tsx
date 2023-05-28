@@ -22,8 +22,7 @@ const AddDestinationToBucketListPage = () => {
       start_date,
       end_date,
     });
-    //   TODO: redirect to own bucketlist overview
-    navigate("/destinations");
+    navigate("/bucketlist-items");
   };
 
   return (

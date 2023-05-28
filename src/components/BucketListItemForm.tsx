@@ -64,7 +64,7 @@ const BucketListItemForm: FC<BucketListItemFormProps> = ({
         />
 
         <label className="block font-medium">
-          End date&nbsp;
+          End date
           <TextInput type="date" {...formik.getFieldProps("end_date")} />
         </label>
         <Error
