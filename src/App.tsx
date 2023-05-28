@@ -13,6 +13,7 @@ import EditUserPage from "./pages/admin/users/EditUserPage";
 import UsersOverviewPage from "./pages/admin/users/UsersOverviewPage";
 import DestinationsEmployeeOverviewPage from "./pages/employee/destinations/DestinationsEmployeeOverviewPage";
 import EmployeePage from "./pages/employee/EmployeePage";
+import ChangePasswordPage from "./pages/employee/users/ChangePasswordPage";
 import LoginPage from "./pages/LoginPage";
 import { NotFoundPage } from "./pages/NotFoundPage";
 
@@ -60,6 +61,10 @@ const router = createBrowserRouter([
   {
     path: "/destinations",
     element: <DestinationsEmployeeOverviewPage />,
+  },
+  {
+    path: "/change-password",
+    element: <ChangePasswordPage />,
   },
   {
     path: "/page-not-found",
