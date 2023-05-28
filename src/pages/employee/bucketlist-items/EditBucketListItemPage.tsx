@@ -10,7 +10,7 @@ import useAxios from "../../../lib/hooks/useAxios";
 import { useRequireEmployee } from "../../../lib/hooks/useRole";
 
 const EditBucketListItemPage = () => {
-  useRequireEmployee();
+  const { user } = useRequireEmployee();
   const { bucketListItemId } = useParams();
   const axios = useAxios();
   const navigate = useNavigate();
@@ -18,9 +18,12 @@ const EditBucketListItemPage = () => {
 
   const URL = `/employee/bucketlist-items/${bucketListItemId}`;
   const queryKey = ["employee", "bucketlist-items", bucketListItemId];
-  const { data: bucketListItem, isLoading } = useQuery<BucketListItem>(
-    queryKey,
-    () => axios.get(URL).then(result => result.data)
+  const {
+    data: bucketListItem,
+    isLoading,
+    refetch,
+  } = useQuery<BucketListItem>(queryKey, () =>
+    axios.get(URL).then(result => result.data)
   );
 
   const onSubmit = async (values: TripDates) => {
@@ -40,6 +43,13 @@ const EditBucketListItemPage = () => {
     navigate("/bucketlist-items");
   };
 
+  const markDestinationPublic = async () => {
+    await axios.patch(
+      `/employee/bucketlist-items/${bucketListItem?.id}/make-public`
+    );
+    refetch();
+  };
+
   return (
     <Layout title="Add bucket list destination">
       <Card>
@@ -55,6 +65,14 @@ const EditBucketListItemPage = () => {
               }}
             />
             <Button onClick={deleteBucketListItem}>Delete item</Button>
+            {user &&
+              bucketListItem.destination.is_reviewed &&
+              bucketListItem.destination.owner_id === user.id &&
+              bucketListItem.destination.visibility === "private" && (
+                <Button onClick={markDestinationPublic}>
+                  Mark underlying destination as public
+                </Button>
+              )}
           </>
         )}
       </Card>
