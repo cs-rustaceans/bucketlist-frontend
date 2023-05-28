@@ -5,6 +5,7 @@ import createQueryClient from "./lib/createQueryClient";
 import { UserProvider } from "./lib/hooks/useUser";
 import HomePage from "./pages";
 import AdminPage from "./pages/admin/AdminPage";
+import FavouriteBucketListItemsOverviewPage from "./pages/admin/bucketlist-items/FavouriteBucketListItemsOverviewPage";
 import AddDestinationPage from "./pages/admin/destinations/AddDestinationPage";
 import DestinationsOverviewPage from "./pages/admin/destinations/DestinationsOverviewPage";
 import EditDestinationPage from "./pages/admin/destinations/EditDestinationPage";
@@ -60,6 +61,10 @@ const router = createBrowserRouter([
   {
     path: "/admin/destinations/:destinationId",
     element: <EditDestinationPage />,
+  },
+  {
+    path: "/admin/bucketlist-items",
+    element: <FavouriteBucketListItemsOverviewPage />,
   },
   {
     path: "/destinations",
