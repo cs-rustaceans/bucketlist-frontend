@@ -1,6 +1,7 @@
 import Cookies from "js-cookie";
 import { useState } from "react";
 import { useNavigate } from "react-router";
+import Card from "../components/Card";
 import Layout from "../components/Layout";
 import UserForm from "../components/UserForm";
 import useAxios from "../lib/hooks/useAxios";
@@ -41,7 +42,9 @@ const LoginForm = () => {
 const LoginPage = () => {
   return (
     <Layout title="Login">
-      <LoginForm />
+      <Card>
+        <LoginForm />
+      </Card>
     </Layout>
   );
 };
