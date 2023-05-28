@@ -1,6 +1,7 @@
 import { Dispatch, FC, SetStateAction, useState } from "react";
 import Button from "./Button";
 import EmailInput from "./EmailInput";
+import Error from "./Error";
 import PasswordInput from "./PasswordInput";
 import Select from "./Select";
 
@@ -42,33 +43,31 @@ const UserForm: FC<UserFormProps> = ({
   };
 
   return (
-    <div className="flex justify-center items-center h-screen">
-      <div className="max-w-md w-full p-6 rounded-lg shadow-lg">
-        <h2 className="text-2xl font-semibold mb-6">{title}</h2>
-        <EmailInput email={email} onChange={setEmail} />
-        <PasswordInput password={password} onChange={setPassword} />
-        {setRole && (
-          <Select value={role} onChange={event => setRole(event.target.value)}>
-            <option value="admin">Admin</option>
-            <option value="employee">Employee</option>
-          </Select>
-        )}
-        {setStatus && (
-          <Select
-            value={status}
-            onChange={event => setStatus(event.target.value)}
-          >
-            <option value="active">Active</option>
-            <option value="inactive">Inactive</option>
-            <option value="deleted" disabled>
-              Deleted
-            </option>
-          </Select>
-        )}
-        {error && <p className="text-red-500 mb-2">{error}</p>}
-        <Button onClick={buttonHandler}>{buttonText}</Button>
-        {children}
-      </div>
+    <div>
+      <h2 className="text-2xl font-semibold mb-6">{title}</h2>
+      <EmailInput email={email} onChange={setEmail} />
+      <PasswordInput password={password} onChange={setPassword} />
+      {setRole && (
+        <Select value={role} onChange={event => setRole(event.target.value)}>
+          <option value="admin">Admin</option>
+          <option value="employee">Employee</option>
+        </Select>
+      )}
+      {setStatus && (
+        <Select
+          value={status}
+          onChange={event => setStatus(event.target.value)}
+        >
+          <option value="active">Active</option>
+          <option value="inactive">Inactive</option>
+          <option value="deleted" disabled>
+            Deleted
+          </option>
+        </Select>
+      )}
+      <Error error={error} />
+      <Button onClick={buttonHandler}>{buttonText}</Button>
+      {children}
     </div>
   );
 };

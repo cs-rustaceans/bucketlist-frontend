@@ -40,7 +40,7 @@ const LoginForm = () => {
 
 const LoginPage = () => {
   return (
-    <Layout>
+    <Layout title="Login">
       <LoginForm />
     </Layout>
   );

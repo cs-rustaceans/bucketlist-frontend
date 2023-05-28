@@ -30,14 +30,22 @@ const links: LinkData[] = [
     text: "Manage users",
     role: "admin",
   },
+  {
+    href: "/admin/destinations",
+    text: "Manage destinations",
+    role: "admin",
+  },
 ];
 
-export default function Layout({ children }: PropsWithChildren) {
+export default function Layout({
+  children,
+  title,
+}: PropsWithChildren<{ title: string }>) {
   const { isLoading, user, logout } = useUser();
 
   return (
     <>
-      <Title>Mama are mere</Title>
+      <Title>{title}</Title>
       {isLoading && <h2 className="text-2xl font-semibold mb-6">Loading...</h2>}
       {!isLoading && (
         <>
