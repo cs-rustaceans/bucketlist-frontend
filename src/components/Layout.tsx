@@ -74,9 +74,14 @@ export default function Layout({
               ) : (
                 <>
                   {user.role === "employee" && (
-                    <Link to={"/change-password"} className="px-3">
-                      Change password
-                    </Link>
+                    <>
+                      <Link to={"/deactivate-account"} className="px-3">
+                        Deactivate account
+                      </Link>
+                      <Link to={"/change-password"} className="px-3">
+                        Change password
+                      </Link>
+                    </>
                   )}
                   <button className="px-3" onClick={logout}>
                     Logout
