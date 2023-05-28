@@ -8,12 +8,12 @@ import AdminPage from "./pages/admin/AdminPage";
 import AddDestinationPage from "./pages/admin/destinations/AddDestinationPage";
 import DestinationsOverviewPage from "./pages/admin/destinations/DestinationsOverviewPage";
 import EditDestinationPage from "./pages/admin/destinations/EditDestinationPage";
-import UserAdd from "./pages/admin/users/AddUser";
-import EditUser from "./pages/admin/users/EditUser";
-import UsersOverview from "./pages/admin/users/UsersOverview";
+import AddUserPage from "./pages/admin/users/AddUserPage";
+import EditUserPage from "./pages/admin/users/EditUserPage";
+import UsersOverviewPage from "./pages/admin/users/UsersOverviewPage";
 import EmployeePage from "./pages/EmployeePage";
-import Login from "./pages/Login";
-import { PageNotFound } from "./pages/PageNotFound";
+import LoginPage from "./pages/LoginPage";
+import { NotFoundPage } from "./pages/NotFoundPage";
 
 const router = createBrowserRouter([
   {
@@ -22,7 +22,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/login",
-    element: <Login />,
+    element: <LoginPage />,
   },
   {
     path: "/admin",
@@ -34,15 +34,15 @@ const router = createBrowserRouter([
   },
   {
     path: "/admin/users",
-    element: <UsersOverview />,
+    element: <UsersOverviewPage />,
   },
   {
     path: "/admin/users/add",
-    element: <UserAdd />,
+    element: <AddUserPage />,
   },
   {
     path: "/admin/users/:userId",
-    element: <EditUser />,
+    element: <EditUserPage />,
   },
   {
     path: "/admin/destinations",
@@ -58,7 +58,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/page-not-found",
-    element: <PageNotFound />,
+    element: <NotFoundPage />,
   },
 ]);
 

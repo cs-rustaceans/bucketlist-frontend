@@ -43,7 +43,7 @@ const UserAddForm = () => {
   );
 };
 
-const UserAdd = () => {
+const AddUserPage = () => {
   useAdmin();
   return (
     <Layout>
@@ -52,4 +52,4 @@ const UserAdd = () => {
   );
 };
 
-export default UserAdd;
+export default AddUserPage;
