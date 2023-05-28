@@ -37,7 +37,7 @@ const EditDestinationPage = () => {
   };
 
   return (
-    <Layout>
+    <Layout title="Edit destination">
       <Card>
         {!isLoading && (
           <div>

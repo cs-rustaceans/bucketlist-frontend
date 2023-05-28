@@ -44,7 +44,7 @@ const UsersTable = () => {
 const UsersOverviewPage = () => {
   useRequireAdmin();
   return (
-    <Layout>
+    <Layout title="Users overview">
       <Link to="/admin/users/add">
         <Button>Add user</Button>
       </Link>

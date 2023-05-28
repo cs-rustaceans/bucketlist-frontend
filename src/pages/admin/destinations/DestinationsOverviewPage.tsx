@@ -68,7 +68,7 @@ const DestinationsTable = () => {
 const DestinationsOverviewPage = () => {
   useRequireAdmin();
   return (
-    <Layout>
+    <Layout title="Destinations overview">
       <Link to="/admin/destinations/add">
         <Button>Add destination</Button>
       </Link>

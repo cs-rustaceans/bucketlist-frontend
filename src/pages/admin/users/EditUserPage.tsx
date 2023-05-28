@@ -45,7 +45,7 @@ const EditUserPage = () => {
   };
 
   return (
-    <Layout>
+    <Layout title="Edit user">
       {!isLoading && (
         <UserForm
           title="Edit user"

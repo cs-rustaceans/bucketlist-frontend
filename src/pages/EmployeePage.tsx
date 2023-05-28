@@ -5,7 +5,7 @@ const EmployeePage = () => {
   useRequireEmployee();
 
   return (
-    <Layout>
+    <Layout title="Employee">
       <h2 className="text-2xl font-semibold mb-6">
         Welcome! You are an employee.
       </h2>

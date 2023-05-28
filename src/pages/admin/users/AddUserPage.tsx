@@ -46,7 +46,7 @@ const UserAddForm = () => {
 const AddUserPage = () => {
   useRequireAdmin();
   return (
-    <Layout>
+    <Layout title="Add user">
       <UserAddForm />
     </Layout>
   );

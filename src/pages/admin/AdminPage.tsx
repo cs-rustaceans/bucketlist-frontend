@@ -5,7 +5,7 @@ const AdminPage = () => {
   useRequireAdmin();
 
   return (
-    <Layout>
+    <Layout title="Admin">
       <h2 className="text-2xl font-semibold mb-6">
         Welcome! You are an admin.
       </h2>

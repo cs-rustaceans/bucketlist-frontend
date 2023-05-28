@@ -24,7 +24,7 @@ const AddDestinationPage = () => {
     }
   };
   return (
-    <Layout>
+    <Layout title="Add destination">
       <Card>
         {!isLoading && (
           <div>
