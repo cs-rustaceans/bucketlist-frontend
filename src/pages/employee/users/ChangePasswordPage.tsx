@@ -22,29 +22,32 @@ const ChangePasswordForm = () => {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
+
+  const changePassword = async (values: {
+    old_password: string;
+    new_password: string;
+  }) => {
+    setIsLoading(true);
+    setError("");
+    try {
+      await axios.post(`/employee/users/change-password`, values);
+      // get token for new password
+      const { data } = await axios.post(`/login`, {
+        email: user?.email,
+        password: values.new_password,
+      });
+      Cookies.set("token", data.token);
+      invalidate();
+      navigate("/");
+    } catch (error: any) {
+      setIsLoading(false);
+      setError(error.message);
+    }
+  };
+
   const formik = useFormik({
     initialValues: { old_password: "", new_password: "" },
-    onSubmit: async (values: {
-      old_password: string;
-      new_password: string;
-    }) => {
-      setIsLoading(true);
-      setError("");
-      try {
-        await axios.post(`/employee/users/change-password`, values);
-        // get token for new password
-        const { data } = await axios.post(`/login`, {
-          email: user?.email,
-          password: values.new_password,
-        });
-        Cookies.set("token", data.token);
-        invalidate();
-        navigate("/");
-      } catch (error: any) {
-        setIsLoading(false);
-        setError(error.message);
-      }
-    },
+    onSubmit: changePassword,
     validationSchema,
   });
 
