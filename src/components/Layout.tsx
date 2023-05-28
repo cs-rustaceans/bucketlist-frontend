@@ -35,6 +35,11 @@ const links: LinkData[] = [
     text: "Manage destinations",
     role: "admin",
   },
+  {
+    href: "/destinations",
+    text: "Destinations",
+    role: "employee",
+  },
 ];
 
 export default function Layout({

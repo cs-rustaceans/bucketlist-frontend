@@ -3,8 +3,32 @@ import { useQuery } from "react-query";
 import { Link } from "react-router-dom";
 import Button from "../../../components/Button";
 import Layout from "../../../components/Layout";
+import OverviewTable from "../../../components/OverviewTable";
 import useAxios from "../../../lib/hooks/useAxios";
 import { useRequireAdmin } from "../../../lib/hooks/useRole";
+
+const columns = [
+  {
+    name: "Name",
+    getValue: (destination: Destination) => (
+      <Link to={`/admin/destinations/${destination.id}`}>
+        {destination.name}
+      </Link>
+    ),
+  },
+  {
+    name: "Latitude",
+    getValue: (destination: Destination) => <>{destination.latitude}</>,
+  },
+  {
+    name: "Longitude",
+    getValue: (destination: Destination) => <>{destination.longitude}</>,
+  },
+  {
+    name: "Is reviewed",
+    getValue: (destination: Destination) => <>{`${destination.is_reviewed}`}</>,
+  },
+];
 
 const DestinationsTable = () => {
   const axios = useAxios();
@@ -30,37 +54,11 @@ const DestinationsTable = () => {
           }}
         />
       </label>
-      <div className="flex flex-col items-center">
-        {isLoading && (
-          <h2 className="text-2xl font-semibold mb-6">Loading...</h2>
-        )}
-        {!isLoading && (
-          <table className="table-auto border-collapse w-full">
-            <thead>
-              <tr>
-                <th className="px-4 py-2 text-left">Name</th>
-                <th className="px-4 py-2 text-left">Latitude</th>
-                <th className="px-4 py-2 text-left">Longitude</th>
-                <th className="px-4 py-2 text-left">Is reviewed</th>
-              </tr>
-            </thead>
-            <tbody>
-              {destinations?.map(destination => (
-                <tr key={destination.id} className="border-t hover:bg-gray-100">
-                  <td className="px-4 py-2">
-                    <Link to={`/admin/destinations/${destination.id}`}>
-                      {destination.name}
-                    </Link>
-                  </td>
-                  <td className="px-4 py-2">{destination.latitude}</td>
-                  <td className="px-4 py-2">{destination.longitude}</td>
-                  <td className="px-4 py-2">{`${destination.is_reviewed}`}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        )}
-      </div>
+      <OverviewTable
+        isLoading={isLoading}
+        data={destinations}
+        columns={columns}
+      />
     </>
   );
 };

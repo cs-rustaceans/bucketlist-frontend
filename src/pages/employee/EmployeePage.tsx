@@ -1,5 +1,5 @@
-import Layout from "../components/Layout";
-import { useRequireEmployee } from "../lib/hooks/useRole";
+import Layout from "../../components/Layout";
+import { useRequireEmployee } from "../../lib/hooks/useRole";
 
 const EmployeePage = () => {
   useRequireEmployee();
