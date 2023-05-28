@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import BucketListItemForm, {
   TripDates,
 } from "../../../components/BucketListItemForm";
+import Button from "../../../components/Button";
 import Card from "../../../components/Card";
 import Layout from "../../../components/Layout";
 import useAxios from "../../../lib/hooks/useAxios";
@@ -34,19 +35,27 @@ const EditBucketListItemPage = () => {
     navigate("/bucketlist-items");
   };
 
+  const deleteBucketListItem = async () => {
+    await axios.delete(URL);
+    navigate("/bucketlist-items");
+  };
+
   return (
     <Layout title="Add bucket list destination">
       <Card>
         <h2 className="text-2xl font-semibold mb-6">Edit bucket list item</h2>
         {!isLoading && bucketListItem && (
-          <BucketListItemForm
-            onSubmit={onSubmit}
-            destinationId={bucketListItem.destination_id}
-            initialValues={{
-              start_date: bucketListItem.start_date,
-              end_date: bucketListItem.end_date,
-            }}
-          />
+          <>
+            <BucketListItemForm
+              onSubmit={onSubmit}
+              destinationId={bucketListItem.destination_id}
+              initialValues={{
+                start_date: bucketListItem.start_date,
+                end_date: bucketListItem.end_date,
+              }}
+            />
+            <Button onClick={deleteBucketListItem}>Delete item</Button>
+          </>
         )}
       </Card>
     </Layout>
