@@ -14,11 +14,11 @@ const LoginForm = () => {
   const axios = useAxios();
 
   const handleLogin = async () => {
-    const { data: token } = await axios.post(`/login`, {
+    const { data } = await axios.post(`/login`, {
       email,
       password,
     });
-    Cookies.set("token", token.token);
+    Cookies.set("token", data.token);
     invalidate();
     navigate("/");
   };
