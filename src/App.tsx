@@ -18,6 +18,8 @@ import EditBucketListItemPage from "./pages/employee/bucketlist-items/EditBucket
 import AddDestinationToBucketListPage from "./pages/employee/destinations/AddDestinationToBucketListPage";
 import DestinationsEmployeeOverviewPage from "./pages/employee/destinations/DestinationsEmployeeOverviewPage";
 import EmployeePage from "./pages/employee/EmployeePage";
+import ChangePasswordPage from "./pages/employee/users/ChangePasswordPage";
+import DeactivateAccountPage from "./pages/employee/users/DeactivateAccountPage";
 import LoginPage from "./pages/LoginPage";
 import { NotFoundPage } from "./pages/NotFoundPage";
 
@@ -85,6 +87,12 @@ const router = createBrowserRouter([
   {
     path: "/bucketlist-items/add",
     element: <AddBucketListItemPage />,
+    path: "/change-password",
+    element: <ChangePasswordPage />,
+  },
+  {
+    path: "/deactivate-account",
+    element: <DeactivateAccountPage />,
   },
   {
     path: "/page-not-found",
