@@ -28,9 +28,9 @@ const columns = [
   {
     name: "",
     getValue: (destination: Destination) => (
-      <Button>
-        <Link to={`/destinations/${destination.id}`}>Add</Link>
-      </Button>
+      <Link to={`/destinations/${destination.id}`}>
+        <Button>Add</Button>
+      </Link>
     ),
   },
 ];
