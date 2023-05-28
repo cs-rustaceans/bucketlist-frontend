@@ -5,10 +5,10 @@ import Card from "../../../components/Card";
 import DestinationForm from "../../../components/DestinationForm";
 import Layout from "../../../components/Layout";
 import useAxios from "../../../lib/hooks/useAxios";
-import { useAdmin } from "../../../lib/hooks/useRole";
+import { useRequireAdmin } from "../../../lib/hooks/useRole";
 
 const EditDestinationPage = () => {
-  useAdmin();
+  useRequireAdmin();
   const { destinationId } = useParams();
   const queryClient = useQueryClient();
   const axios = useAxios();

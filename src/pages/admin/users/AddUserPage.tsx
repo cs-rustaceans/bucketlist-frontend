@@ -4,7 +4,7 @@ import Card from "../../../components/Card";
 import Layout from "../../../components/Layout";
 import UserForm from "../../../components/UserForm";
 import useAxios from "../../../lib/hooks/useAxios";
-import { useAdmin } from "../../../lib/hooks/useRole";
+import { useRequireAdmin } from "../../../lib/hooks/useRole";
 
 const UserAddForm = () => {
   const [email, setEmail] = useState("");
@@ -44,7 +44,7 @@ const UserAddForm = () => {
 };
 
 const AddUserPage = () => {
-  useAdmin();
+  useRequireAdmin();
   return (
     <Layout>
       <UserAddForm />

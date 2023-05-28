@@ -1,8 +1,8 @@
 import Layout from "../../components/Layout";
-import { useAdmin } from "../../lib/hooks/useRole";
+import { useRequireAdmin } from "../../lib/hooks/useRole";
 
 const AdminPage = () => {
-  useAdmin();
+  useRequireAdmin();
 
   return (
     <Layout>
