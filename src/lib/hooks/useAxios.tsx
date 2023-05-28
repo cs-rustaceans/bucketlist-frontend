@@ -1,9 +1,10 @@
 import axios from "axios";
 import { Config } from "../config";
-import Cookies from "js-cookie";
+import { useUser } from "./useUser";
 
 export default function useAxios() {
-  const token = Cookies.get("token");
+  const { token } = useUser();
+
   return axios.create({
     baseURL: Config.apiUrl,
     headers: {
