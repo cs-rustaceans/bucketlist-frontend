@@ -11,6 +11,7 @@ import EditDestinationPage from "./pages/admin/destinations/EditDestinationPage"
 import AddUserPage from "./pages/admin/users/AddUserPage";
 import EditUserPage from "./pages/admin/users/EditUserPage";
 import UsersOverviewPage from "./pages/admin/users/UsersOverviewPage";
+import BucketListItemsOverviewPage from "./pages/employee/bucketlist-items/BucketListItemsOverviewPage";
 import AddDestinationToBucketListPage from "./pages/employee/destinations/AddDestinationToBucketListPage";
 import DestinationsEmployeeOverviewPage from "./pages/employee/destinations/DestinationsEmployeeOverviewPage";
 import EmployeePage from "./pages/employee/EmployeePage";
@@ -65,6 +66,10 @@ const router = createBrowserRouter([
   {
     path: "/destinations/:destinationId",
     element: <AddDestinationToBucketListPage />,
+  },
+  {
+    path: "/bucketlist-items",
+    element: <BucketListItemsOverviewPage />,
   },
   {
     path: "/page-not-found",

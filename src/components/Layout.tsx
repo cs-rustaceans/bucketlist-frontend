@@ -40,6 +40,11 @@ const links: LinkData[] = [
     text: "Destinations",
     role: "employee",
   },
+  {
+    href: "/bucketlist-items",
+    text: "Bucket list",
+    role: "employee",
+  },
 ];
 
 export default function Layout({
