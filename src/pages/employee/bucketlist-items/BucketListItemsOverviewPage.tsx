@@ -1,5 +1,6 @@
 import { useQuery } from "react-query";
 import { Link } from "react-router-dom";
+import Button from "../../../components/Button";
 import Layout from "../../../components/Layout";
 import OverviewTable from "../../../components/OverviewTable";
 import useAxios from "../../../lib/hooks/useAxios";
@@ -73,6 +74,9 @@ const BucketListItemsOverviewPage = () => {
   useRequireEmployee();
   return (
     <Layout title="My bucket-list">
+      <Link to="/bucketlist-items/add">
+        <Button>Add new bucket list item with custom destination</Button>
+      </Link>
       <BucketListTable />
     </Layout>
   );
