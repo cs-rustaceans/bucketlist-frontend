@@ -87,6 +87,8 @@ const router = createBrowserRouter([
   {
     path: "/bucketlist-items/add",
     element: <AddBucketListItemPage />,
+  },
+  {
     path: "/change-password",
     element: <ChangePasswordPage />,
   },
