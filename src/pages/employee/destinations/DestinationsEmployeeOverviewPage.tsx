@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import Layout from "../../../components/Layout";
 import OverviewTable from "../../../components/OverviewTable";
 import useAxios from "../../../lib/hooks/useAxios";
-import { useEmployee } from "../../../lib/hooks/useRole";
+import { useRequireEmployee } from "../../../lib/hooks/useRole";
 
 const columns = [
   {
@@ -44,9 +44,9 @@ const DestinationsTable = () => {
 };
 
 const DestinationsEmployeeOverviewPage = () => {
-  useEmployee();
+  useRequireEmployee();
   return (
-    <Layout>
+    <Layout title="Destinations overview">
       <DestinationsTable />
     </Layout>
   );
