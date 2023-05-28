@@ -5,12 +5,17 @@ import createQueryClient from "./lib/createQueryClient";
 import { UserProvider } from "./lib/hooks/useUser";
 import HomePage from "./pages";
 import AdminPage from "./pages/admin/AdminPage";
+import FavouriteBucketListItemsOverviewPage from "./pages/admin/bucketlist-items/FavouriteBucketListItemsOverviewPage";
 import AddDestinationPage from "./pages/admin/destinations/AddDestinationPage";
 import DestinationsOverviewPage from "./pages/admin/destinations/DestinationsOverviewPage";
 import EditDestinationPage from "./pages/admin/destinations/EditDestinationPage";
 import AddUserPage from "./pages/admin/users/AddUserPage";
 import EditUserPage from "./pages/admin/users/EditUserPage";
 import UsersOverviewPage from "./pages/admin/users/UsersOverviewPage";
+import AddBucketListItemPage from "./pages/employee/bucketlist-items/AddBucketlistItemPage";
+import BucketListItemsOverviewPage from "./pages/employee/bucketlist-items/BucketListItemsOverviewPage";
+import EditBucketListItemPage from "./pages/employee/bucketlist-items/EditBucketListItemPage";
+import AddDestinationToBucketListPage from "./pages/employee/destinations/AddDestinationToBucketListPage";
 import DestinationsEmployeeOverviewPage from "./pages/employee/destinations/DestinationsEmployeeOverviewPage";
 import EmployeePage from "./pages/employee/EmployeePage";
 import ChangePasswordPage from "./pages/employee/users/ChangePasswordPage";
@@ -60,10 +65,28 @@ const router = createBrowserRouter([
     element: <EditDestinationPage />,
   },
   {
+    path: "/admin/bucketlist-items",
+    element: <FavouriteBucketListItemsOverviewPage />,
+  },
+  {
     path: "/destinations",
     element: <DestinationsEmployeeOverviewPage />,
   },
   {
+    path: "/destinations/:destinationId",
+    element: <AddDestinationToBucketListPage />,
+  },
+  {
+    path: "/bucketlist-items",
+    element: <BucketListItemsOverviewPage />,
+  },
+  {
+    path: "/bucketlist-items/:bucketListItemId",
+    element: <EditBucketListItemPage />,
+  },
+  {
+    path: "/bucketlist-items/add",
+    element: <AddBucketListItemPage />,
     path: "/change-password",
     element: <ChangePasswordPage />,
   },

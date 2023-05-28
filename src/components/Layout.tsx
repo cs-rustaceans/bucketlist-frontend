@@ -36,8 +36,18 @@ const links: LinkData[] = [
     role: "admin",
   },
   {
+    href: "/admin/bucketlist-items",
+    text: "Favourite destinations",
+    role: "admin",
+  },
+  {
     href: "/destinations",
     text: "Destinations",
+    role: "employee",
+  },
+  {
+    href: "/bucketlist-items",
+    text: "Bucket list",
     role: "employee",
   },
 ];

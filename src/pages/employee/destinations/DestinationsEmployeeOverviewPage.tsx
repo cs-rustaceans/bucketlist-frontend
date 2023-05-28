@@ -1,5 +1,6 @@
 import { useQuery } from "react-query";
 import { Link } from "react-router-dom";
+import Button from "../../../components/Button";
 import Layout from "../../../components/Layout";
 import OverviewTable from "../../../components/OverviewTable";
 import useAxios from "../../../lib/hooks/useAxios";
@@ -23,6 +24,14 @@ const columns = [
   {
     name: "Is reviewed",
     getValue: (destination: Destination) => <>{`${destination.is_reviewed}`}</>,
+  },
+  {
+    name: "",
+    getValue: (destination: Destination) => (
+      <Link to={`/destinations/${destination.id}`}>
+        <Button>Add</Button>
+      </Link>
+    ),
   },
 ];
 
