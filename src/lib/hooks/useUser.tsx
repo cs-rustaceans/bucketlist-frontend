@@ -1,13 +1,14 @@
-import useAxios from "./useAxios";
-
-import { AxiosError } from "axios";
+import axios, { AxiosError } from "axios";
 import Cookies from "js-cookie";
 import { PropsWithChildren, createContext, useContext } from "react";
 import { useQuery, useQueryClient } from "react-query";
+import { Config } from "../config";
+import { parseAuthToken } from "../util";
 
 export const UserContext = createContext<{
   user?: User;
   isLoading: boolean;
+  token?: string;
   invalidate: () => void;
   logout: () => Promise<void>;
 }>({
@@ -20,36 +21,44 @@ export const UserContext = createContext<{
 export const useUser = () => useContext(UserContext);
 
 export function UserProvider({ children }: PropsWithChildren) {
-  const queryClient = useQueryClient();
-  const axios = useAxios();
-  const token = Cookies.get("token");
-  const payload = token ? JSON.parse(atob(token.split(".")[1])) : undefined;
-  const role = payload?.role ?? "employee";
-  const { data: user, isLoading } = useQuery<User | undefined>(
-    [role, "users", "me"],
-    () =>
-      axios
-        .get(`/${role}/users/me`)
-        .then(data => data.data)
-        .catch(err => {
-          if (err instanceof AxiosError) {
-            if (err.response?.status === 403) return;
-          }
-          console.log(err);
-        })
-  );
-
-  const invalidate = () => {
-    queryClient.invalidateQueries([role, "users", "me"]);
-  };
+  const { data, isLoading, refetch } = useQuery<
+    | {
+        user?: User;
+        token?: string;
+      }
+    | undefined
+  >(["users", "me"], () => {
+    const token = Cookies.get("token");
+    const payload = token ? parseAuthToken(token) : undefined;
+    const role = payload?.role ?? "employee";
+    // do not use axios hook
+    return axios
+      .get(`${Config.apiUrl}/${role}/users/me`, {
+        headers: {
+          ...(token && { Authorization: `Bearer ${token}` }),
+        },
+      })
+      .then(data => ({
+        user: data.data,
+        token,
+      }))
+      .catch(err => {
+        if (err instanceof AxiosError) {
+          if (err.response?.status === 403) return;
+        }
+        console.log(err);
+        return undefined;
+      });
+  });
 
   const ctx = {
-    user,
+    user: data?.user,
     isLoading,
-    invalidate,
+    token: data?.token,
+    invalidate: refetch,
     async logout() {
       Cookies.remove("token");
-      invalidate();
+      refetch();
     },
   };
   return <UserContext.Provider value={ctx}>{children}</UserContext.Provider>;
