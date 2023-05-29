@@ -5,6 +5,11 @@ import Layout from "../../../components/Layout";
 import OverviewTable from "../../../components/OverviewTable";
 import useAxios from "../../../lib/hooks/useAxios";
 import { useRequireEmployee } from "../../../lib/hooks/useRole";
+import * as dayjs from "dayjs";
+import * as LocalizedFormat from "dayjs/plugin/localizedFormat";
+import { fixDates } from "../../../lib/util";
+
+dayjs.extend(LocalizedFormat);
 
 const BucketListTable = () => {
   const axios = useAxios();
@@ -14,7 +19,10 @@ const BucketListTable = () => {
     isLoading,
     refetch,
   } = useQuery<Destination[]>(["employee", "bucketlist-items"], () =>
-    axios.get(`/employee/bucketlist-items`).then(d => d.data)
+    axios
+      .get(`/employee/bucketlist-items`)
+      .then(d => d.data)
+      .then(d => d.map(fixDates("start_date", "end_date")))
   );
 
   const changeFavourite = async (bucketListItemId: number) => {
@@ -36,13 +44,13 @@ const BucketListTable = () => {
     {
       name: "Start date",
       getValue: (bucketListItem: BucketListItem) => (
-        <>{bucketListItem.start_date.toString()}</>
+        <>{dayjs(bucketListItem.start_date).format("LL")}</>
       ),
     },
     {
       name: "End date",
       getValue: (bucketListItem: BucketListItem) => (
-        <>{bucketListItem.end_date.toString()}</>
+        <>{dayjs(bucketListItem.end_date).format("LL")}</>
       ),
     },
     {
