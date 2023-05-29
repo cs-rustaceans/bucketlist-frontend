@@ -4,7 +4,7 @@ import Layout from "../../../components/Layout";
 import OverviewTable from "../../../components/OverviewTable";
 import useAxios from "../../../lib/hooks/useAxios";
 import { useRequireAdmin } from "../../../lib/hooks/useRole";
-import * as dayjs from "dayjs";
+import dayjs from "dayjs";
 import { fixDates } from "../../../lib/util";
 import { BucketListItem } from "../../../models/BucketListItem";
 import { Destination } from "../../../models/Destination";

@@ -8,7 +8,7 @@ import Card from "../../../components/Card";
 import Layout from "../../../components/Layout";
 import useAxios from "../../../lib/hooks/useAxios";
 import { useRequireEmployee } from "../../../lib/hooks/useRole";
-import * as dayjs from "dayjs";
+import dayjs from "dayjs";
 import { BucketListItem } from "../../../models/BucketListItem";
 
 const EditBucketListItemPage = () => {

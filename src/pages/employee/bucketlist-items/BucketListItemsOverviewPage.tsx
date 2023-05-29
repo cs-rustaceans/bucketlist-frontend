@@ -5,7 +5,7 @@ import Layout from "../../../components/Layout";
 import OverviewTable from "../../../components/OverviewTable";
 import useAxios from "../../../lib/hooks/useAxios";
 import { useRequireEmployee } from "../../../lib/hooks/useRole";
-import * as dayjs from "dayjs";
+import dayjs from "dayjs";
 import * as LocalizedFormat from "dayjs/plugin/localizedFormat";
 import { fixDates } from "../../../lib/util";
 import { BucketListItem } from "../../../models/BucketListItem";
