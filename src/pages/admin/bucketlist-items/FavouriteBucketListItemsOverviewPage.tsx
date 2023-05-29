@@ -4,10 +4,13 @@ import Layout from "../../../components/Layout";
 import OverviewTable from "../../../components/OverviewTable";
 import useAxios from "../../../lib/hooks/useAxios";
 import { useRequireAdmin } from "../../../lib/hooks/useRole";
-import dayjs from "dayjs";
 import { fixDates } from "../../../lib/util";
 import { BucketListItem } from "../../../models/BucketListItem";
 import { Destination } from "../../../models/Destination";
+import dayjs from "dayjs/esm/index.js";
+import LocalizedFormat from "dayjs/esm/plugin/localizedFormat";
+
+dayjs.extend(LocalizedFormat);
 
 const columns = [
   {
