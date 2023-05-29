@@ -5,6 +5,7 @@ import Layout from "../../../components/Layout";
 import OverviewTable from "../../../components/OverviewTable";
 import useAxios from "../../../lib/hooks/useAxios";
 import { useRequireEmployee } from "../../../lib/hooks/useRole";
+import { Destination } from "../../../models/Destination";
 
 const columns = [
   {

@@ -8,6 +8,8 @@ import { useRequireEmployee } from "../../../lib/hooks/useRole";
 import * as dayjs from "dayjs";
 import * as LocalizedFormat from "dayjs/plugin/localizedFormat";
 import { fixDates } from "../../../lib/util";
+import { BucketListItem } from "../../../models/BucketListItem";
+import { Destination } from "../../../models/Destination";
 
 dayjs.extend(LocalizedFormat);
 

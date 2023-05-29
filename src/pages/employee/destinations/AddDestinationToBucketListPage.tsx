@@ -6,6 +6,7 @@ import Card from "../../../components/Card";
 import Layout from "../../../components/Layout";
 import useAxios from "../../../lib/hooks/useAxios";
 import { useRequireEmployee } from "../../../lib/hooks/useRole";
+import * as dayjs from "dayjs";
 
 const AddDestinationToBucketListPage = () => {
   useRequireEmployee();
@@ -34,7 +35,10 @@ const AddDestinationToBucketListPage = () => {
         <BucketListItemForm
           onSubmit={onSubmit}
           destinationId={Number(destinationId)}
-          initialValues={{ start_date: new Date(), end_date: new Date() }}
+          initialValues={{
+            start_date: dayjs().format("YYYY-MM-DD"),
+            end_date: dayjs().format("YYYY-MM-DD"),
+          }}
         />
       </Card>
     </Layout>

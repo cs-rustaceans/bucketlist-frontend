@@ -1,4 +1,4 @@
-interface BucketListItemPrivateDestinationDTO {
+export interface BucketListItemPrivateDestinationDTO {
   name: string;
   start_date: Date;
   end_date: Date;

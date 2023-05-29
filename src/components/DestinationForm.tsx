@@ -5,6 +5,7 @@ import Button from "./Button";
 import Error from "./Error";
 import Select from "./Select";
 import TextInput from "./TextInput";
+import { Destination } from "../models/Destination";
 
 interface DestinationFormProps {
   initialValues?: Destination;

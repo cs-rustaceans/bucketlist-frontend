@@ -4,6 +4,7 @@ import { PropsWithChildren, createContext, useContext } from "react";
 import { useQuery, useQueryClient } from "react-query";
 import { Config } from "../config";
 import { parseAuthToken } from "../util";
+import { User } from "../../models/User";
 
 export const UserContext = createContext<{
   user?: User;

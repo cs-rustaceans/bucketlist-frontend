@@ -1,4 +1,4 @@
-interface Destination {
+export interface Destination {
   id?: number;
   owner_id?: number;
   visibility: "public" | "private";

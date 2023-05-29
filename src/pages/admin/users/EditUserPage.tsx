@@ -6,6 +6,7 @@ import Layout from "../../../components/Layout";
 import UserForm from "../../../components/UserForm";
 import useAxios from "../../../lib/hooks/useAxios";
 import { useRequireAdmin } from "../../../lib/hooks/useRole";
+import { User } from "../../../models/User";
 
 const EditUserPage = () => {
   useRequireAdmin();

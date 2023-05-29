@@ -4,6 +4,10 @@ import Layout from "../../../components/Layout";
 import OverviewTable from "../../../components/OverviewTable";
 import useAxios from "../../../lib/hooks/useAxios";
 import { useRequireAdmin } from "../../../lib/hooks/useRole";
+import * as dayjs from "dayjs";
+import { fixDates } from "../../../lib/util";
+import { BucketListItem } from "../../../models/BucketListItem";
+import { Destination } from "../../../models/Destination";
 
 const columns = [
   {
@@ -23,13 +27,13 @@ const columns = [
   {
     name: "Start date",
     getValue: (bucketListItem: BucketListItem) => (
-      <>{bucketListItem.start_date.toString()}</>
+      <>{dayjs(bucketListItem.start_date).format("LL")}</>
     ),
   },
   {
     name: "End date",
     getValue: (bucketListItem: BucketListItem) => (
-      <>{bucketListItem.end_date.toString()}</>
+      <>{dayjs(bucketListItem.end_date).format("LL")}</>
     ),
   },
 ];
@@ -39,7 +43,11 @@ const BucketListTable = () => {
 
   const { data: bucketListItems, isLoading } = useQuery<Destination[]>(
     ["admin", "bucketlist-items"],
-    () => axios.get(`/admin/bucketlist-items`).then(d => d.data)
+    () =>
+      axios
+        .get(`/admin/bucketlist-items`)
+        .then(d => d.data)
+        .then(d => d.map(fixDates("start_date", "end_date")))
   );
 
   return (

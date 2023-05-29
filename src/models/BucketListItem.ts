@@ -1,4 +1,6 @@
-interface BucketListItem {
+import { Destination } from "./Destination";
+
+export interface BucketListItem {
   id: number;
   destination_id: number;
   owner_id: number;

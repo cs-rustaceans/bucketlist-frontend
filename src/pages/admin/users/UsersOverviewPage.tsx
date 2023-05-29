@@ -4,6 +4,7 @@ import Button from "../../../components/Button";
 import Layout from "../../../components/Layout";
 import useAxios from "../../../lib/hooks/useAxios";
 import { useRequireAdmin } from "../../../lib/hooks/useRole";
+import { User } from "../../../models/User";
 
 const UsersTable = () => {
   const axios = useAxios();

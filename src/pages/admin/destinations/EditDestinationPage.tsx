@@ -6,6 +6,7 @@ import DestinationForm from "../../../components/DestinationForm";
 import Layout from "../../../components/Layout";
 import useAxios from "../../../lib/hooks/useAxios";
 import { useRequireAdmin } from "../../../lib/hooks/useRole";
+import { Destination } from "../../../models/Destination";
 
 const EditDestinationPage = () => {
   useRequireAdmin();

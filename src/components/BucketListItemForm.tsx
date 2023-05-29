@@ -6,10 +6,11 @@ import useAxios from "../lib/hooks/useAxios";
 import Button from "./Button";
 import Error from "./Error";
 import TextInput from "./TextInput";
+import { Destination } from "../models/Destination";
 
 export interface TripDates {
-  start_date: Date;
-  end_date: Date;
+  start_date: string;
+  end_date: string;
 }
 
 interface BucketListItemFormProps {

@@ -8,6 +8,8 @@ import Card from "../../../components/Card";
 import Layout from "../../../components/Layout";
 import useAxios from "../../../lib/hooks/useAxios";
 import { useRequireEmployee } from "../../../lib/hooks/useRole";
+import * as dayjs from "dayjs";
+import { BucketListItem } from "../../../models/BucketListItem";
 
 const EditBucketListItemPage = () => {
   const { user } = useRequireEmployee();
@@ -60,8 +62,12 @@ const EditBucketListItemPage = () => {
               onSubmit={onSubmit}
               destinationId={bucketListItem.destination_id}
               initialValues={{
-                start_date: bucketListItem.start_date,
-                end_date: bucketListItem.end_date,
+                start_date: dayjs(bucketListItem.start_date + "Z").format(
+                  "YYYY-MM-DD"
+                ),
+                end_date: dayjs(bucketListItem.end_date + "Z").format(
+                  "YYYY-MM-DD"
+                ),
               }}
             />
             <Button onClick={deleteBucketListItem}>Delete item</Button>
