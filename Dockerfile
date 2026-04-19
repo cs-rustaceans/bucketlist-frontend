@@ -9,7 +9,7 @@ COPY *.ts .
 COPY *.html .
 
 # Install Node
-ENV NODE_VERSION=18
+ENV NODE_VERSION=20
 RUN apt install -y curl
 RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
 ENV NVM_DIR=/root/.nvm
