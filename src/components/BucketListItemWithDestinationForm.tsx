@@ -49,7 +49,7 @@ const BucketListItemWithDestination = ({
         Name
         <TextInput id="name" type="text" {...formik.getFieldProps("name")} />
       </label>
-      <Error error={formik.errors.name} />
+      <Error error={formik.errors.name && String(formik.errors.name)} />
 
       <label className="block font-medium">
         Latitude
@@ -59,7 +59,7 @@ const BucketListItemWithDestination = ({
           {...formik.getFieldProps("latitude")}
         />
       </label>
-      <Error error={formik.errors.latitude} />
+      <Error error={formik.errors.latitude && String(formik.errors.latitude)} />
 
       <label className="block font-medium">
         Longitude
@@ -69,7 +69,7 @@ const BucketListItemWithDestination = ({
           {...formik.getFieldProps("longitude")}
         />
       </label>
-      <Error error={formik.errors.longitude} />
+      <Error error={formik.errors.longitude && String(formik.errors.longitude)} />
 
       <label className="block font-medium">
         Start date
